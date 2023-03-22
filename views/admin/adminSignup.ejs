@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/login_page_style.css" />
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+      <div class="box">
+        <div class="row">
+          <div class="col-sm-5 col-xs-1 box1">
+            <div class="inline-text">
+              <h1>Create Account</h1>
+              <p>
+                
+                By enrolling your mobile phone number,<br />
+                you consent to receive automated security notifications<br />
+                via text message from ShopSmart.
+              </p>
+              <h4 class="mt-5">ShopSmart</h4>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-1 box2">
+            
+            <form action="/admin/signup" method="post">
+
+                <div class="user-id user-data">
+                    <input type="text " name="name" id="" required=""/>
+                    <label>Enter your name</label>
+                  </div>
+                  <div class="user-id user-data">
+                    <input type="email " name="email" id="" required=""/>
+                    <label>Enter Email</label>
+                  </div>
+                  <div class="user-id user-data">
+                    <input minlength="5" maxlength="13" type="number " name="number" id="" value="+91" required=""/>
+                    <label>EntermMobile Number</label>
+                  </div>
+                  <div class="user-id user-data">
+                    <input type="password" name="password" id="" required=""/>
+                    <label>Enter Password</label>
+                  </div>
+                  <div class="user-id user-data">
+                    <input type="password" name="confirm_Password" id="" required=""/>
+                    <label>Re-Enter Password</label>
+                  </div>
+                  
+                  <div class="user-id button">
+                    <input type="submit" name="" id="" value="Create Account" />
+                  </div>
+                  <br><br>
+                  
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

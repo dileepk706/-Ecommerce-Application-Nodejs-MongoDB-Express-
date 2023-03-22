@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/login_page_style.css" />
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+      <div class="box">
+        <div class="row">
+          <div class="col-sm-5 col-xs-1 box1">
+            <div class="inline-text">
+              <h1>Login</h1>
+              <p>
+                Get access to your Orders,<br />
+                Wishlist and<br />
+                Recomadations
+              </p>
+              <h4 class="mt-5">ShopSmart</h4>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-1 box2"> 
+            
+            <div class="popup-message"></div>
+                <div class="user-id user-data">
+                    <input type="email " name="email" id="typeEmail" required="enter the e-mail"/>
+                    <label>Enter Email/Mobile Number</label>
+                  </div>
+                  <div class="user-id user-data">
+                    <input type="password" class="form-control" name="password" id="password" required=""/>
+                    <label>Enter the password</label>
+                  </div>
+                      <span><a href="/forgot_password">Forgot?</span></a>
+                  <div class="user-id button">
+                    <input onclick="addCatbtn()"  type="submit" name="" id="btn" value="Login" />
+                  </div>
+          
+
+            <div class="user-id">
+            <p>OR</p>
+        </div>
+            <div class="user-id button">
+              <a href="/twilio-sms/Request_OTP"><input type="reset" name="" id="" value="Request OTP" /></a>
+            </div>
+            <div class="user-id">
+              <%= message %>
+              <p class="footer"><a href="/signup">New to ShopSmart? Create an account</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    
+    <script src="/public/js/index.js"></script>
+  </body>
+</html>

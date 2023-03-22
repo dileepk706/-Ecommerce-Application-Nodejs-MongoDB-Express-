@@ -1,0 +1,70 @@
+ 
+<%- include('include/_adminSideBar')%>
+
+            
+<div class="main">
+    <div class="container">
+              
+        <div class="row">
+            <div class="col-md-12">
+             
+                <div class="container my-5">
+                    <h2 class="mb-4">Update Product</h2>
+
+                    <!-- <form  > -->
+
+                        <div class="form-group row">
+                            <label for="product_name" class="col-sm-2 col-form-label">Product Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="product_name" name="product_name"   value="<%= product.name%>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="description" name="description"  ><%= product.description%></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" name="price" value="<%= product.price%>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="quantity" name="quantity" value="<%= product.quantity%>">
+                            </div>
+                        </div>
+                        <input id="id" type="text" value="<%= product._id%>" hidden >
+                        <!-- <div class="form-group row">
+                            <label for="category" class="col-sm-2 col-form-label">Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="category" name="category">
+                                    <option value="">Select a category</option>
+                                    <option value="category1">Category 1</option>
+                                    <option value="category2">Category 2</option>
+                                    <option value="category3">Category 3</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <input type="text" class="form-control" id="id" name="" hidden value="<%= product._id%>">
+
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button onclick="update_product()"  type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+                            </div>
+                        </div>
+
+                    <!-- </form> -->
+                </div>
+
+
+            </div>
+          </div>
+  
+    </div>
+  </div>
+            
+  <%- include('include/_adminFooter')%>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSmart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font awsome icon/css/all.css">
+    <link rel="stylesheet" href="font style/Roboto-MediumItalic.ttf">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    
+<!--header-->
+ <!-- header section -->
+
+ <header>
+    <div class="header-left">
+     <a href="http://localhost:3000/">ShopSmart</a>
+  </div>
+  </div>
+    <div class="header-center mt-1">
+      <form action="/search"  >
+        <input class="header-center-input" type="text" id="search" name="search" placeholder=" Search for products,Brands and more" >
+        
+        <button type="submit"><i class="fas fa-search"></i></button>
+        
+      </form>
+    </div>
+    <div class="header-right">
+      <a class="active" href="logout">Logout</a>
+      <a href="/profile">Profile</a>
+      <a href="/viewcart">Cart </a>
+      <a href="/wishlist">Wishlist</a>
+      <a href="/myorders">Orders</a>
+      <!-- <i class="fas fa-user-circle fa-lg"></i>
+      <i class="fas fa-shopping-cart"></i>
+      <i class="fas fa-heart"></i>
+      <i class="fas fa-clipboard-list"></i> -->
+    </div>
+    
+</header>
+ 
+<script>
+    function searchData(){
+      var input=document.querySelector('#search')
+    console.log(input.value);
+    var query=input.value
+    fetch(`http://localhost:3000/search?q=${query}`,{
+      method:'GET' ,
+       
+    }).then(res=>res.json()).then(data=>{
+      alert(data)
+    })
+  }
+  
+</script>
+
+
+
+
+<!--/header-->

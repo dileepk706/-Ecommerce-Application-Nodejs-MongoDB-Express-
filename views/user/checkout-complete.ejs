@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- metas -->
+     <meta charset="utf-8">
+     <meta name="author" content="Chitrakoot Web" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+     <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+ 
+     <!-- title  -->
+     <title>shopSmart</title>
+ 
+     <!-- favicon -->
+     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+ 
+     <!-- plugins -->
+     <link rel="stylesheet" href="/public/css/plugins.css">
+ 
+     <!-- theme core css -->
+     <link href="/public/css/product_styles.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('include/_header')%>
+
+     
+        <!-- CHECKOUT COMPLETE
+        ================================================== -->
+        <section class="md">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+
+                        <div class="common-block text-center">
+
+                            <div class="inner-title">
+                                <h3 class="mb-0">Thank you for your order!</h3>
+                            </div>
+                            <div class="inner-title">
+                                <h5 class="mb-0">userId : <%=new_order.user%></h5>
+                                <h5 class="mb-0">Your orderId : <%=new_order.orderId%></h5>
+                            </div>
+                                <h4>Delevery Address :</h4>
+                                <P><%=address%></P>
+                                <h4 class="mt-4">TOTAL_BILL_AMOUNT :₹ <%= cartData.total_amount %> </h4>
+                            <p class="lead mb-4">
+                                Thank you for your payment. An automated payment receipt will be sent to your registered email.
+                            </p>
+
+                            <a href="order-tracking.html" class="butn-style2 wide m-1">Track your order</a>
+                            <a href="/" class="butn-style2 wide m-1">Back to home</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+</body>
+</html>

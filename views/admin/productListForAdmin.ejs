@@ -1,0 +1,58 @@
+<%- include('include/_adminSideBar')%>
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-top: 10px;margin-left: 20px;">Product List</h1>
+            </div>
+            <div class="col-md-4 mt-4 text-right">
+                <a href="/admin/product/add_product"><button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addCategoryModal">Add New Product</button></a>
+            </div>
+
+        </div>
+                            
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">No.Stocks</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">No.Orders</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(function(product) { %>
+                        <tr>
+                            <td>
+                                <div class="card" style="height :3rem;width: 3rem; ">
+                                    <img src="\public\uploads\<%= product.image[0] %>"  alt=" <%= product.name %>" ">
+                                </div>
+                            </td>
+                            <td><a href="/admin/product?name=<%= product.name %> "><%= product.name %></a></td>
+                            <td><%= product.quantity %>  </td>
+                            <td> <%= product.price %> </td>
+                            <td>  <%= product. orders %> </td>
+                            <td>
+                                <a href="/admin/product/updateProduct?id=<%= product._id %>"  > <button class="btn-sm btn-primary">Update</button></a>
+                                <a onclick="delete_Product('<%= product._id %>')"  ><button class="btn-sm btn-danger">Delete</button></a>
+                            </td>
+                        </tr>
+                        
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<%- include('include/_adminFooter')%>
+
+
+

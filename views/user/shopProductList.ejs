@@ -1,0 +1,219 @@
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+    <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+
+    <!-- title  -->
+    <title>shopSmart</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+    <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="/public/css/plugins.css">
+
+    <!-- theme core css -->
+    <link href="/public/css/product_styles.css" rel="stylesheet">
+    
+        <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
+
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.all.min.js"></script>
+
+
+</head>
+
+
+<%- include('include/_header')%>
+
+
+ 
+
+<!-- PRODUCT LIST
+        ================================================== -->
+        <section class="md">
+            <div class="container">
+                <div class="row">
+
+                    <!-- start sidebar panel -->
+                    <div class="col-lg-3 col-12 side-bar order-2 order-lg-1">
+                        <div class="widget">
+                            <div class="widget-title">
+                                <h5>Categories</h5>
+                            </div>
+                            <div id="accordion" class="accordion-style2">
+                                 
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                      Mobile
+                                    </button>
+                                  </h5>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            <ul class="list-unstyled">
+                                                <li><a href="#">Intex</a></li>
+                                                <li><a href="#">Google</a></li>
+                                                <li><a href="#">Samsung</a></li>
+                                                <li><a href="#">Apple</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <div class="widget-title">
+                                <h5>Price Range</h5>
+                            </div>
+                            <input type="text" class="price-range" name="my_range" value="">
+                            <a href="#" class="butn-style2 small mt-1-9">Filter</a>
+                        </div>
+
+                    </div>
+                    <!-- end sidebar panel -->
+
+                    <!-- right panel section -->
+                    <div class="col-lg-9 col-12 ps-lg-1-9 order-1 order-lg-2 mb-1-9 mb-lg-0">
+
+                        <div class="row g-0 align-items-center bg-light rounded p-3 mb-1-9">
+
+                            <div class="col-12 col-md my-1 my-md-0 text-center text-md-start font-weight-600">Showing 27 results</div>
+
+                            <div class="col-12 col-md-auto">
+
+                                <div class="row justify-content-center">
+ 
+
+                                    <div class="col-auto my-1 my-md-0">
+                                        <label class="m-0">Sort By:</label>
+                                        <select class="w-auto d-inline-block form-select">
+                                            <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
+                                            <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
+                                            <option value="#?sort=p.price&amp;order=ASC" selected="">Price (Low &gt; High)</option>
+                                            <option value="#?sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
+                                            <option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
+                                            <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
+                                             
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+ 
+
+                        <%products.forEach(product=>{%>
+                         
+                        <div class="row g-0 product-listing mb-0">
+                            <a href="/product_details?id=<%= product._id %>">
+
+                            <div class="col-sm-4">
+                                <div class="product-img">
+                                    <a href="shop-product-detail.html">
+                                        <img src="\public\uploads\<%= product.image[0] %>" alt="..."></a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8">
+
+                                <div class="product-list">
+
+                                    <div class="product-description">
+                                        <h3><a href="shop-product-detail.html"><%= product.name %></a></h3>
+                                        <h4 class="price">
+                                                    <span class="offer-price">₹ <%= product.price %></span>
+                                                </h4>
+                                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+                                    </div>
+
+                                    <div class="product-buttons">
+                                        <ul class="ps-0">
+                                            <li><a onclick="add_wishlist('<%=product._id%>')"  class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
+                                            <li><a  href="/viewcart?product=<%=product._id%>" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                            <!-- <li><a href="#" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li> -->
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            </a>
+                        </div>
+
+                        <%})%>
+
+                        <!-- pagination -->
+                        <div class="pagination text-small text-uppercase text-extra-dark-gray mt-4">
+                            <ul class="ps-0">
+                                <!-- <li><a href="#"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li> -->
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <!-- <li><a href="#">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li> -->
+                            </ul>
+                        </div>
+                        <!-- end pagination -->
+
+                    </div>
+                    <!-- end right panel section -->
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+           <!-- SCROLL TO TOP
+    ================================================== -->
+    <a href="#" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="/public/productJs/jquery.min.js"></script>
+
+    <!-- popper js -->
+    <script src="/public/productJs/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/public/productJs/bootstrap.min.js"></script>
+
+    <!-- core.min.js -->
+    <script src="/public/productJs/core.min.js"></script>
+
+    <!-- zoom js -->
+    <script src="/public/productJs/xzoom.js"></script>
+
+    <!-- hammer js -->
+    <script src="/public/productJs/jquery.hammer.min.js"></script>
+
+    <!-- setup js -->
+    <script src="/public/productJs/setup.js"></script>
+
+    <!-- custom scripts -->
+    <script src="/public/productJs/main.js"></script>
+
+    <!-- all js include end -->
+
+
+<%- include('include/_footer')%>

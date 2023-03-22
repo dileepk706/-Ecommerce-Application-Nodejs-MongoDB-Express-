@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- metas -->
+     <meta charset="utf-8">
+     <meta name="author" content="Chitrakoot Web" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+     <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+ 
+     <!-- title  -->
+     <title>shopSmart</title>
+ 
+     <!-- favicon -->
+     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+ 
+     <!-- plugins -->
+     <link rel="stylesheet" href="/public/css/plugins.css">
+ 
+     <!-- theme core css -->
+     <link href="/public/css/product_styles.css" rel="stylesheet">
+
+              <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
+
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <%- include('include/_header')%>
+        
+        <!-- ACCOUNT WISHLIST
+        ================================================== -->
+        <section class="md">
+            <div class="container">
+                 
+                    <!-- end left panel -->
+
+                    <!-- right panel -->
+                    <div class="col-lg-8" style="width: 100.666%;">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="mb-0">My Orders</h4>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table v-align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Total</th>
+                                            <th>Order Status</th>
+                                            <th>Cancel</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%if(!orders){%>
+                                            <h1 style="color: red;">No orders </h1>
+                                            <%}else{%>
+                                                <% orders.forEach(order => { %>
+                                    
+
+                                                    <% order.items.forEach(ordPrdct => { %>
+                                                        <tr>
+                                                    <td>
+                                                        <a href="#"><img style="height: 100px;" src="/public/uploads/<%=ordPrdct.item.image[0]%>" alt="..." /></a>
+                                                    </td>
+                                                    <td><a href="#"><%=ordPrdct.item.name%></a></td>
+                                                    <td class="product-price">₹<%=ordPrdct.item.price%></td>
+        
+        
+                                                        <td class="product-price"><%=ordPrdct.quantity%></td>
+                                                        <td class="product-price">₹<%=ordPrdct.sub_total%></td>
+                                                    
+                                                     
+                                                        <td>
+                                                            <%if(ordPrdct.status=='cancelled'){%>
+                                                                <span class="fas fa-circle text-danger small mr-1"></span>
+                                                                <%}%>
+                                                            <%if(ordPrdct.status=='placed'){%>
+                                                                <span class="fas fa-circle text-primary small mr-1"></span>
+                                                                <%}%> 
+                                                            <%if(ordPrdct.status=='shipped'){%>
+                                                                <span class="fas fa-circle text-warning small mr-1"></span>
+                                                                <%}%>
+                                                            <%if(ordPrdct.status=='delivered'){%>
+                                                                <span class="fas fa-circle text-success small mr-1"></span>
+                                                                <%}%>
+                                                            <%=ordPrdct.status%>
+                                                        </td>
+                                                        <%if(ordPrdct.status=='cancelled'){%>
+                                                            <td><a> Order Cancelled</a></td>
+                                                            <%}if(ordPrdct.status=='delivered'){%>
+                                                            <td><a> Order Delivered</a></td>
+                                                            <%}if(ordPrdct.status=='placed' || ordPrdct.status=='shipped'){%>
+                                                         <td><a style="cursor: pointer;" onclick="cancellOrder('<%=ordPrdct.item._id%>','<%=order.orderId%>')" ><i class="fas fa-trash"></i></a></td>
+                                                                <%}%>
+                                                    </tr>
+                                                    <%})%>
+        
+                                                <% }) %>
+                                                
+                                                <%}%>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+
+                           
+                            <a class="butn-style2 mt-3" href="/"><span>Back to home</span></a>
+                        </div>
+
+                    </div>
+                    <!-- end right panel -->
+                </div>
+            </div>
+        </section>
+
+        <script>
+
+
+
+            function cancellOrder(prdctId,ordId){
+                
+               
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "you want to cancel this Order!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, remove it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`http://localhost:3000/myorders/cancelorder?prdctId=${prdctId}&ordId=${ordId}`,{
+                    method:'DELETE'
+                }).then(response=>response.json()).then(data=>{
+                    alert(data.message)
+                    window.location.href='/myorders'
+                }).catch(err=>{
+                    alert('server error')
+                })
+                    }
+                })
+            
+              
+            }
+        </script>
+</body>
+</html>

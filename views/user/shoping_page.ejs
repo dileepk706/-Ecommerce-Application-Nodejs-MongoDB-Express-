@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>shopSmart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/public/css/shop_style.css" rel="stylesheet">
+
+    <link href="/public/css/product_styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font awsome icon/css/all.css">
+    <link rel="stylesheet" href="font style/Roboto-MediumItalic.ttf">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+    <!-- //sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>  
+
+</head>
+
+<body>
+     
+
+
+    <header>
+        <div class="header-left">
+         <a href="http://localhost:3000/">ShopSmart</a>
+      </div>
+      </div>
+        <div class="header-center mt-1">
+          <form >
+            <input class="header-center-input" type="text" id="search" name="search" placeholder=" Search for products,Brands and more" >
+            <button type="submit" value="search"><i class="fas fa-search"></i></button>
+            
+          </form>
+        </div>
+        <div class="header-right">
+          <a class="active" href="logout">Logout</a>
+          <a href="/profile">Profile</a>
+          <a href="/viewcart">Cart </a>
+          <a href="/wishlist">Wishlist</a>
+          <a href="/myorders">Orders</a>
+          <!-- <i class="fas fa-user-circle fa-lg"></i>
+          <i class="fas fa-shopping-cart"></i>
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-clipboard-list"></i> -->
+        </div>
+        
+    </header>
+
+
+
+
+
+
+    <!-- Shop Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-12">
+                <!-- Price Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                    <form action="/filter">
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input class="form-control" name="Price_above" type="number" value="<%= maxPrice %>" placeholder="Price above">
+                             
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input class="form-control" name="price_below" type="number" value="<%= minPrice %>" placeholder="Price Below">
+                             
+                        </div>
+                         
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <button class="form-control">Check</button> 
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- Price End -->
+                
+                <!-- Category Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter 2</h5>
+                   
+                    <form>
+                        
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <ul class="list-group">
+                                <!-- <% if(p_products ){ %>
+                                 
+                                    <a href=""><li class="list font-weight-bold text-primary"><%= p_products.name %></li></a>
+                                    <% p_products.subcategories.forEach(subCatName => { %>
+                                <a href=""><li class="list"><%= subCatName.name %></li></a>
+
+                                        <% }) %>
+                                     
+                                    <% } %> -->
+                              </ul>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- Color End -->
+
+                <!-- Size Start -->
+                <div class="mb-5">
+                    <h5 class="font-weight-semi-bold mb-4">Filter3</h5>
+                    <!-- <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <ul class="list-group">
+                                <a href=""><li class="list">Redmi</li></a>
+                                <a href=""><li class="list">Vivo</li></a>
+                                <a href=""><li class="list">Oppo</li></a>
+                                <a href=""><li class="list">Nothing</li></a>
+                              </ul>
+                        </div>
+                    </form> -->
+                </div>
+                <!-- Size End -->
+            </div>
+            <!-- Shop Sidebar End -->
+
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <!-- <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search by name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent text-primary">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form> -->
+                            <div class="dropdown ml-4">
+                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                            Sort by
+                                        </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                    <a class="dropdown-item" href="#">Latest</a>
+                                    <a class="dropdown-item" href="/sort?sort=-1">price high to low</a>
+                                    <a class="dropdown-item" href="/sort?sort=1">price low to high</a>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <% if(p_products ){ %>
+
+                        <% p_products.subcategories.forEach(product => { %>
+                     
+                            <% product.products.forEach(productData => { %>
+                                <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                    <div class="card product-item border-0 mb-4">
+                                        <div style="width: 80px; margin-left: 94px;" class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                            <img style="height: 146px" class="img-fluid w-100" src="\public\uploads\<%= productData.image[0] %>" alt="">
+                                        </div>
+                                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                            <h6 class="text-truncate mb-3"><%= productData.name %></h6>
+                                            <div class="d-flex justify-content-center">
+                                                <h6><%= productData.price %></h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between bg-light border">
+                                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                           
+                               
+                                   
+                                  <% }) %>
+
+                            <% } %>
+                 
+
+
+                            <% if(SubCatproducts ){ %>
+
+                                <% SubCatproducts.products.forEach(product => { %>
+                     
+                                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                            <div class="card product-item border-0 mb-4">
+                                                <div style="width: 80px; margin-left: 94px;" class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                                    <img style="height: 146px" class="img-fluid w-100" src="\public\uploads\<%= product.image[0] %>" alt="">
+                                                </div>
+                                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                                    <h6 class="text-truncate mb-3"><%= product.name %></h6>
+                                                    <div class="d-flex justify-content-center">
+                                                        <h6><%= product.price %></h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                           
+                                          <% }) %>
+
+                                <% } %>
+
+
+
+                                <% if(products ){ %>
+
+                                    <% products.forEach(product => { %>
+                         
+                                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                                <div class="card product-item border-0 mb-4">
+                                                    <a href="/product_details?id=<%= product._id %>">
+
+                                                        <div style="width: 121px; margin-left: 80px;" class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                                            <img style="height: 180px" class="img-fluid w-100" src="\public\uploads\<%= product.image[0] %>" alt="">
+                                                        </div>
+                                                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                                            <h6 class="font-weight-bold text-truncate mb-3"><%= product.name %></h6>
+                                                            <div class="d-flex justify-content-center">
+                                                                <h6 style="font-weight: 100;"><%= product.price %></h6><h6 class="text-muted ml-2"> </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer d-flex justify-content-between bg-light border">
+                                                            <a onclick="add_wishlist('<%=product._id%>')"  class="btn btn-sm text-dark p-0"><i class="fas fa-heart"></i>Add to wishlist</a>
+                                                            <a href="/viewcart?product=<%=product._id%>" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                                        </div>
+
+                                                    </a>
+                                                   
+                                                </div>
+                                            </div>
+                                               
+                                              <% }) %>
+    
+                                    <% } %>
+                                    <div class="pagination text-small text-uppercase text-extra-dark-gray mt-4">
+                                        <ul class="ps-0">
+                                            <!-- <li><a href="#"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li> -->
+                                            <!-- <li class="active"><a href="#">1</a></li> -->
+                                            <%for(let count = 1; count <= totalPage; count++ ){%>
+                                            <li><a href="?page=<%=count%>"><%=count%></a></li>
+                                             <%}%>
+                                            <!-- <li><a href="#">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li> -->
+                                        </ul>
+                                    </div>
+                                    <% if(error ){ %>
+                                    <div class="  m-5 d-flex justify-content-center">
+                                        <h2 class=" m-5 text-danger">No Products available!</h2> 
+                                    </div>
+                                    <% } %>
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+
+    <script>
+        function add_wishlist(prdctId){
+
+            fetch(`http://localhost:3000/wishlist?prdctId=${prdctId}`,{
+                method:'PUT'
+            }).then(response=>response.json()).then(data=>{
+                swal(data.message); 
+            }).catch(err=>{
+                alert(err.message)
+            })
+        }
+     </script>
+    <!-- Shop End -->
+
+
+    <!-- Footer Start -->
+    <!-- <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <a href="" class="text-decoration-none">
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">Shop</span>Smart</h1>
+                </a>
+                <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                    required="required" />
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-top border-light mx-xl-5 py-4">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-dark">
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                    by
+                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br>
+                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="img/payments.png" alt="">
+            </div>
+        </div>
+    </div> -->
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

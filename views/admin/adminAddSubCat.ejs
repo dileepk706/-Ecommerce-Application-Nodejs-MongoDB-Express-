@@ -1,0 +1,30 @@
+<%- include('include/_adminSideBar')%>
+
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-top: 10px;margin-left: 20px;">Add Sub-Category</h1>
+                <p style="margin-top: 10px;margin-left: 20px;" >under <%= name %></p>
+            </div>
+        </div>
+                            
+        <div class="row">
+            <div class="col-md-12">
+              <form action="/admin/category/update_category" method="post">
+                <input type="text" class="form-control" id="name" name="parentCategory" placeholder="Enter category name" value="<%= name %>" hidden>
+                <div class="form-group">
+                    <label class="ml-5" for="name">Sub_Category Name</label>
+                    <input type="text" class="form-control ml-5" id="name" name="subCategory" placeholder="Enter subcategory name" required>
+                  </div>
+                
+                <button type="submit" class="btn btn-primary ml-5">Add  SubCategory</button>
+              </form>
+            </div>
+          </div>
+
+    </div>
+</div>
+
+<%- include('include/_adminFooter')%>

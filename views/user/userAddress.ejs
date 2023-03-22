@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- metas -->
+     <meta charset="utf-8">
+     <meta name="author" content="Chitrakoot Web" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+     <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+ 
+     <!-- title  -->
+     <title>shopSmart</title>
+ 
+     <!-- favicon -->
+     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+ 
+     <!-- plugins -->
+     <link rel="stylesheet" href="/public/css/plugins.css">
+ 
+     <!-- theme core css -->
+     <link href="/public/css/product_styles.css" rel="stylesheet">
+    
+     
+     <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <%- include('include/_header')%>
+
+
+    <section class="md">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <!-- left panel -->
+                <div class="col-lg-4 col-sm-9 mb-2-3 mb-lg-0">
+
+                    <div class="account-pannel">
+
+                        <div class="p-4">
+
+                            <div class="text-center">
+                                <!-- <div class="pb-3">
+                                    <img class="img-fluid rounded-circle img-thumbnail" src="img/avatar/t-3.jpg" alt="...">
+                                </div> -->
+                                <h6 class="mb-0 display-28"><%= userData.name%></h6>
+                                <!-- <small>Joined February 06, 2017</small>
+                                <div class="reward-points">
+                                    <i class="ti-star text-primary pe-1"></i> Points: 7386
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="list-group">
+                            <a class="list-group-items" href=""><i class="ti-bag pe-2"></i>Orders<span class="badge badge-pill">6</span></a>
+                            <a class="list-group-items " href="/profile"><i class="ti-user pe-2"></i>Profile</a>
+                            <a class="list-group-items active" href="/address"><i class="ti-location-pin pe-2"></i>Addresses</a>
+                            <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart pe-2"></i>Wishlist<span class="badge badge-pill">3</span></a>
+                            <a class="list-group-items" href="account-tickets.html"><i class="ti-tag pe-2"></i>My Tickets<span class="badge badge-pill">4</span></a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end left panel -->
+
+                <div class="col-lg-8">
+
+                    <div class="common-block">
+
+                        <div class="inner-title">
+                            <h4 class="mb-0">Contact Address</h4>
+                        </div>
+
+                
+
+                            <div class="row">
+
+                                <div class="col-sm-6">
+
+                                    <% address.forEach(addrss => { %>
+                                        <div class="form-group">
+                                            <!-- <textarea style=" height: 60px;width: 677px;" class="" name="" id="" cols="30" rows="10">
+                                                <%= addrss.name %>  <%= addrss.phone %> <%= addrss.locality %> <%= addrss.city %> <%= addrss.state %> <%= addrss.pincode %> 
+                                            </textarea> -->
+                                        <input type="text" style="    width: 644px; height: 60px;" class="form-control" name="" value="<%= addrss.name %> (<%= addrss.phone %>)  <%= addrss.address%>, <%= addrss.city %>, <%= addrss.state %>, PIN:<%= addrss.pincode %> , land-mark:<%= addrss.landmark %>  " readonly>
+                                            
+                                        </div>
+                                        <% }) %>
+                                    
+
+                                </div>
+                            </div>
+ 
+
+                            <div class="inner-title mt-1-9">
+                                <h4 class="mb-0">Shipping Address</h4>
+                            </div>
+                        <!-- 
+                            <div class="row">
+                                <div class="col-sm-12 mb-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="same-contact">
+                                        <label class="form-check-label" for="same-contact">Same as contact address</label>
+                                    </div>
+                                </div>
+
+                            </div> -->
+
+
+                    
+
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Add new Address
+                          </button>
+                        <!-- <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="exampleModal">
+                            Add new address
+                          </button> -->
+                    </div>
+
+                </div>
+                <!-- end right panel -->
+            </div>
+        </div>
+    </section>
+
+
+ 
+
+ 
+
+
+    
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  
+  
+  
+              <form action="/add_address" method="post">
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" name="name" placeholder="Your company name here" required>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>10-digit mobile number</label>
+                                  <input type="number" class="form-control" name="phone" placeholder="Your address here" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>address</label>
+                                  <input type="text" class="form-control" name="address" placeholder="Your address here" required>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group"> 
+                                  <label>pincode</label>
+                                  <input type="text" class="form-control" name="pincode" placeholder="Your city name here" required>
+                              </div>
+                          </div>
+                          <!-- <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>Landmark </label>
+                                  <input type="text" class="form-control" name="landmark " placeholder="Your landmark  here">
+                              </div>
+                          </div> -->
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>City</label>
+                                  <input type="text" class="form-control" name="city" placeholder="Your city name here" required>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>State</label>
+                                  <input type="text" class="form-control" name="state" placeholder="Your state name here" required>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- <div class="inner-title mt-1-9">
+                          <h4 class="mb-0">Shipping Address</h4>
+                          </div> -->
+                      <!-- 
+                          <div class="row">
+                              <div class="col-sm-12 mb-2">
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="same-contact">
+                                      <label class="form-check-label" for="same-contact">Same as contact address</label>
+                                  </div>
+                              </div>
+                          </div> -->
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
+
+</body>
+</html>

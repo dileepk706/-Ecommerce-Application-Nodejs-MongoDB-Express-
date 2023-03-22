@@ -1,0 +1,67 @@
+ 
+<%- include('include/_adminSideBar')%>
+
+            
+<div class="main">
+    <div class="container">
+              
+        <div class="row">
+            <div class="col-md-12">
+             
+                <div class="container my-5">
+                    <h2 class="mb-4">Update Product</h2>
+
+                    <!-- <form  > -->
+
+                        <div class="form-group row">
+                            <label for="product_name" class="col-sm-2 col-form-label">Category Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="category_name" name="product_name"   value="<%= name%>">
+                            </div>
+                        </div>
+                        
+                        <input type="text" class="form-control" id="id" name=""  hidden  value="<%= id %>">
+
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-sm-2">
+                                <button onclick="update_Category()"  type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+                            </div>
+                        </div>
+
+
+                        <script>
+                            const category_name=document.querySelector('#category_name')
+                            const category_id=document.querySelector('#id')
+
+                            function update_Category(){
+
+                            fetch('http://localhost:3000/admin/update_category',{
+                                method:'PUT',
+                                headers:{
+                                    'Content-Type':'application/json'
+                                },
+                                body:JSON.stringify({
+                                    name:category_name.value,
+                                    id:category_id.value
+                                })
+                            }).then(response=>response.json()).then(data=>{
+                                alert(data.message)
+                                window.location.href = '/admin/view_category';
+                            }).catch(err=>{
+                                alert(err)
+                            })
+                            }
+                        </script>
+
+
+                    <!-- </form> -->
+                </div>
+
+
+            </div>
+          </div>
+  
+    </div>
+  </div>
+            
+  <%- include('include/_adminFooter')%>

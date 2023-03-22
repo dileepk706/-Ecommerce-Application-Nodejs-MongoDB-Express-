@@ -1,0 +1,246 @@
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+
+
+
+    <!-- PAGE CONTENT
+        ================================================== -->
+        <div class="page-content">
+
+            <!-- PAGE HEADER
+            ================================================== -->
+            <div class="page-header">
+                <div class="search-form">
+                    <form action="#" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control search-input" placeholder="Type something...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="close-search" type="button"><i class="icon-close"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="#" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                                <a class="logo-box" href="index.html"><img src="../img/logos/logo.png" class="logo" alt="..."></a>
+                            </div>
+                            <button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                                <li><a href="#" id="toggle-fullscreen"><i class="fa fa-expand"></i></a></li>
+                                <li><a href="#" id="search-button"><i class="fa fa-search"></i></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"><i class="fa fa-envelope"></i></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i></a>
+                                    <ul class="dropdown-menu dropdown-lg dropdown-content">
+                                        <li class="drop-title">Notifications<a href="#" class="drop-title-link"><i class="fa fa-angle-right"></i></a></li>
+                                        <li class="slimscroll dropdown-notifications">
+                                            <ul class="list-unstyled dropdown-oc">
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="far fa-image"></i></span>
+                                                        <span class="notification-info">Finished uploading photos to gallery <b>"South Africa"</b>.
+                                                            <small class="notification-date">20:00</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
+                                                        <span class="notification-info"><b>John Doe</b> mentioned you in a post "Update v1.5".
+                                                            <small class="notification-date">06:07</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-danger"><i class="fa fa-bolt"></i></span>
+                                                        <span class="notification-info">4 new special offers from the apps you follow!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-success"><i class="fa fa-bullhorn"></i></span>
+                                                        <span class="notification-info">There is a meeting with <b>Ethan</b> in 15 minutes!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/avatars/user-dropdown.jpg" alt="..." class="rounded-circle"></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Calendar</a></li>
+                                        <li><a href="#"><span class="badge float-end badge-danger">42</span>Messages</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Account Settings</a></li>
+                                        <li><a href="#">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+
+            <!-- PAGE INNER
+            ================================================== -->
+            <div class="page-inner">
+
+                <!-- PAGE MAIN WRAPPER
+                ================================================== -->
+                <div id="main-wrapper">
+                    <!-- row -->
+                    <div class="row align-items-center grid-margin">
+                        <div class="col-12">
+                            <div class="card card-white">
+                                <div class="card-body row align-items-center">
+                                    <div class="col-12 col-md-5 mb-4 mb-md-0">
+                                        <h4 class="mb-0">Customers</h4>
+                                    </div>
+
+                                    <div class="col-12 col-md-7">
+
+                                        <div class="row">
+
+                                            <div class="col-md-8 mb-3 mb-md-0">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="exampleInputEmail1" placeholder="search by name">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <select class="form-control form-select">
+                                                    <option>Order Amount</option>
+                                                    <option>Highest To Lowest</option>
+                                                    <option>Lowest To Highest</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card card-white">
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">E-mail</th>
+                                                <th scope="col">Total Orders</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Total Amount</th>
+                                                <th scope="col">Joining Date</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let i = 0; i < userData.length; i++) { %>
+                                                <tr>
+                                                  <th scope="row"><%=i+1%></th>
+                                                  <td>
+                                                    <div class="d-flex align-items-center">
+                                                      <div class="me-4">
+                                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                                      </div>
+                                                      <div>
+                                                        <h6><%=userData[i].name%></h6>
+                                                        <span>ID : <%=userData[i]._id%></span>
+                                                      </div>
+                                                    </div>
+                                                  </td>
+                                                  <td><%=userData[i].email%></td>
+                                                  <td>12</td>
+                                                  <% if(userData[i].status==true) { %>
+                                                    <td><span class="badge rounded-pill bg-soft-green">Active</span></td>
+                                                  <% } else { %>
+                                                    <td><span class="badge rounded-pill bg-soft-pink">Blocked</span></td>
+                                                  <% } %>
+                                                  <td>$2563</td>
+                                                  <td><%=userData[i].createdAt%></td>
+                                                  <td>
+                                                    <% if(userData[i].status==true) { %>
+                                                      <a onclick="block_unbloock('<%=userData[i]._id%>',0)" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="Block">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i>
+                                                      </a>
+                                                    <% } else { %>
+                                                      <a onclick="block_unbloock('<%=userData[i]._id%>',1)" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="Unblock">
+                                                        <i class="fa fa-unlock" aria-hidden="true"></i>
+                                                      </a>
+                                                   
+                                              
+                                                                <%}%>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <%}%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row -->
+                </div>
+<script>
+    function  block_unbloock(id,val){
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes do it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+
+                    fetch(`http://localhost:3000/admin/user_action?action=${val}&_id=${id}`,{
+                        method:'PATCH'
+                    }).then(response=>response.json()).then(data=>{
+                        alert(data.message)
+                        window.location.href='/admin/user_management'
+                    }).catch(err=>{
+                        alert(err.message)
+                    })
+                }
+              })
+            }
+   
+</script>
+             
+            
+
+
+
+
+
+
+
+     
+
+
+
+<%- include('include/_footer')%>

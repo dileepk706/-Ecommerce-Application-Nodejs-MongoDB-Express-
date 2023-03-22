@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- metas -->
+     <meta charset="utf-8">
+     <meta name="author" content="Chitrakoot Web" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+     <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+ 
+     <!-- title  -->
+     <title>shopSmart</title>
+ 
+     <!-- favicon -->
+     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+ 
+     <!-- plugins -->
+     <link rel="stylesheet" href="/public/css/plugins.css">
+ 
+     <!-- theme core css -->
+     <link href="/public/css/product_styles.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('include/_header')%>
+
+
+<!-- CHECKOUT
+        ================================================== -->
+        <section class="md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="process-steps mb-1-9 mb-lg-6">
+                            <a class="step" href="shop-checkout-address.html"><i class="ti-direction-alt"></i><h4 class="step-title">1. Address</h4></a>
+                            <a class="step" href="shop-checkout-shipping.html"><i class="ti-truck"></i><h4 class="step-title">2. Shipping</h4></a>
+                            <a class="step" href="shop-checkout-payment.html"><i class="ti-wallet"></i><h4 class="step-title">3. Payment</h4></a>
+                            <a class="step active" href="shop-checkout-review.html"><i class="ti-check-box"></i><h4 class="step-title">4. Review</h4></a>
+                        </div>
+                    </div>
+
+                    <!-- left pannel section -->
+                    <div style="width: 65%;" class="col-lg-9 col-md-12 ps-2-3 mb-1-9 mb-lg-0">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="mb-0">Review Your Order</h4>
+                            </div>
+
+                            <div class="shop-cart-table">
+                                <table class="table shop-cart text-center mb-0">
+                                    <colgroup>
+                                        <col width="100">
+                                            <col>
+                                                <col width="1">
+                                                    <col>
+                                    </colgroup>
+
+                                    <thead>
+                                        <tr>
+                                            <th class="first"></th>
+                                            <th class="text-start text-uppercase font-weight-500">Product</th>
+                                            <th class="text-start text-uppercase font-weight-500">Qty</th>
+                                            <th class="text-start text-uppercase font-weight-500">Sub Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <% cartData.product.forEach(prdct => { %>
+    
+                                            <tr>
+                                                <td class="product-thumbnail text-start">
+                                                    <a href="#"><img src="/public/uploads/<%= prdct.item.image[0] %>" alt="..."></a>
+                                                </td>
+                                                <td class="text-start">
+                                                    <a href="#"><%= prdct.item.name %> </a>
+                                                    
+                                                </td>
+                                                <td class="text-start">
+                                                     <%= prdct.quantity %>
+                                                    
+                                                </td>
+                                                <td class="product-subtotal text-start">₹ <%= prdct.sub_total %></td>
+                                              
+                                            </tr>
+        
+                                            <% }) %>
+
+ 
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="buttons-set">
+                                <a href="/checkout-payment" class="butn-style2 wide"><i class="fas fa-arrow-left me-1"></i> Back</a>
+                                <a href="/checkout-complete?method=<%= method %>" class="butn-style2 wide">Complete <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end left pannel section -->
+
+                    <!-- right pannel section -->
+                    <div style="width: 35%;" class="col-lg-3 col-12 side-bar">
+
+                        <div class="widget">
+
+                            <div class="widget-title">
+                                <h5>Order Summary</h5>
+                            </div>
+
+                            <table class="table classic">
+                                <tbody>
+                                    <% cartData.product.forEach(prdct => { %>
+    
+                                        <tr>
+                                            <th><%= prdct.item.name %> * <%= prdct.quantity %> :</th>
+                                            <td class="text-gray-dark">₹ <%= prdct.sub_total %> </td>
+                                        </tr>
+    
+                                        <% }) %>
+                                    
+                                    <tr>
+                                        <th>Shipping:</th>
+                                        <td class="text-gray-dark">Free</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Estimated tax:</th>
+                                        <td class="text-gray-dark">$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td class="text-lg text-gray-dark">$<%= cartData.total_amount %></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                         
+                    <!-- end right pannel section -->
+
+                </div>
+            </div>
+        </section>
+        <!-- end checkout section -->
+
+</body>
+</html>

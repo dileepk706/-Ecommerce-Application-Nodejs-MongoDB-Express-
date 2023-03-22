@@ -1,0 +1,79 @@
+<%- include('include/_adminSideBar')%>
+
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-top: 10px;margin-left: 20px;">Add Product</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 ml-5">
+                <form method="POST" enctype="multipart/form-data" action="/admin/product/add_product">
+                    <div class="form-group">
+                        <label for="name">Product Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter product description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Enter product price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Quantity:</label>
+                        <input type="number" class="form-control" id="price" name="quantity" placeholder="Enter product price" required>
+                    </div>
+                   
+                   
+                    <select class="form-control" id="category" name="pname" required>
+                        <option value="" selected disabled>Select category</option>
+
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.name %>"><%= category.name %></option>
+                            <% }) %>
+                            
+
+                    </select>
+                    <br>
+                    <select class="form-control" id="category" name="sname" required>
+                        <option value="" selected disabled>Select Sub_category</option>
+                        
+                            <option value="Mobiles">Mobiles</option>
+                            <% categories.forEach(category => { %>
+                                <% category.subcategories.forEach(subcategry => { %>
+                                    <option value="<%= subcategry.name %>"><%= subcategry.name %></option> 
+                                    <% }) %>
+                                <% }) %>
+                    </select>
+                    <br>
+                    
+                    
+                    
+                    <select class="form-control" id="category" name="brand_name" required>
+                        <option value="" selected disabled>Select Brand Nmae</option>
+                        <% brand.forEach(brand_name => { %>
+                            <option value="<%= brand_name.name %>"><%= brand_name.name %></option>
+                            <% }) %>
+                    </select>
+                    <br>
+                    <div class="form-group">
+                        <label for="image">Images:</label>
+                        <input type="file" class="form-control-file" id="image" name="image" multiple required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+                <br>
+<br>
+<br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('include/_adminFooter')%>

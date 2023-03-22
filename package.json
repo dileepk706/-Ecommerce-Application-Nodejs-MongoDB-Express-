@@ -1,0 +1,30 @@
+{
+  "name": "amarkart_e-commerce_web_application",
+  "version": "1.0.0",
+  "description": "this is my first fullstack project after learn the java_script, node.js, express.js and mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "dileep k",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.10.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nocache": "^3.0.4",
+    "nodemon": "^2.0.20",
+    "randomstring": "^1.2.3",
+    "twilio": "^4.8.0"
+  }
+}

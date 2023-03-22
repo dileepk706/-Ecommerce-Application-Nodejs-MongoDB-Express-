@@ -1,0 +1,70 @@
+
+<!-- <div class="main ">
+
+    <h1 style="margin-top: 10px;margin-left: 20px;">category</h1>
+    <div class="charts">
+        <div class="chart">
+            <h2>Earnings (past 12 months)</h2>
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro voluptate praesentium, eaque omnis esse velit nihil consequuntur ex ab? Quas atque hic odit maxime debitis itaque libero dolorem quia totam nulla quidem laborum temporibus perspiciatis blanditiis architecto sint quos, asperiores dolor quae expedita odio soluta repudiandae quaerat magnam. Pariatur consequuntur corporis nihil, reiciendis voluptatem possimus consequatur vel iste perferendis quos enim fuga sint repellendus earum expedita hic vitae nulla saepe porro aliquam assumenda alias. Autem culpa cumque in possimus eaque modi unde dolorum ducimus asperiores blanditiis voluptatibus, ipsa eos itaque, laboriosam quia ratione hic quidem incidunt rerum cupiditate reiciendis enim?
+            </div>
+        </div>
+        
+    </div>
+</div> -->
+
+
+
+
+<%- include('include/_adminSideBar')%>
+
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1 style="margin-top: 10px;margin-left: 20px;">Category</h1>
+      </div>
+      <div class="col-md-4 mt-4 text-right">
+        <a href="/admin/category/add_category">
+          <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr class="text-primary">
+              <th>Category Name</th>
+              <th>Subcategories</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% categories.forEach(category => { %>
+            <tr>
+              <td class="font-weight-bold font-italic"><%= category.name %></td>
+              <td>
+                <ul>
+                  <% category.subcategories.forEach(subCategory => { %>
+                    <% if(subCategory.isDeleted === false ){ %>
+                  <li class="m-3"><%= subCategory.name %> <a href="/admin/category/edit_subcategory"><button class="btn btn-sm btn-primary">Update</button></a> <a onclick="delete_subcategory('<%= subCategory._id %>','<%= category._id %>')"><button class="btn btn-sm btn-danger">Delete</button></a></li>
+                      <% } %>
+                  <% }) %>
+                </ul> 
+              </td>
+              <td>
+                <a href="/admin/category/add_subcategory?pName=<%= category.name %>"><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addSubcategoryModal">Add Subcategory</button></a>
+                <a href="/admin/updateCategory?id=<%= category._id %>&name=<%= category.name %>"><button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editCategoryModal">Edit</button></a>
+                <a onclick="deleteCategory('<%= category._id %>')"> <button type="button" id="delete" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editCategoryModal">Delete</button></a>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<%- include('include/_adminFooter')%>

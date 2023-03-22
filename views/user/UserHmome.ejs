@@ -1,0 +1,111 @@
+ 
+
+  <%- include('include/_header')%>
+
+<!-- category-section -->
+
+<section>
+
+  <div class="category-row">
+    <% if (categories==null) { %>
+      <p>No category available</p>
+      <% }else { %>
+        <% categories.forEach(product => { %>
+          <div class="category-col">
+            <a href="category?name=<%= product.name %>"><img src="/public/uploads/<%= product.image%>" alt=""></a>
+              <h5><%= product.name %></h5>
+          </div>
+          <% }) %>
+      <% } %>
+  </div>
+  </section>
+
+<!-- banner section -->
+  <section>
+    <div class="banner">
+        <div class="slider">
+            <img src="/public/image/banner1.jpg" alt="banner">
+            <img src=" /public/image/banner3.jpg" alt="banner">
+            <img src=" /public/image/banner4.jpg" alt="banner">
+            <img src=" /public/image/banner2.jpg" alt="banner">
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Mobile section -->
+<section>
+  <div class="card">
+      <div class="common-heading">
+          <div class="common-heading-left">
+           <h1>Best Battery Phones</h1>
+           <h2>More than 4000mAh</h2>
+          </div>
+          <div class="common-heading-right">
+            <a href="/category?name=Mobiles"><button>view all</button></a>
+          </div>
+      </div>
+      <div class="common-row">
+        <% if (mobiles==null) { %>
+          <p>No products available</p>
+          <% }else { %>
+            <% mobiles.forEach(product => { %>
+              <% if (product.isDeleted==false) { %>
+                <div class="common-col">
+                  <a href="user/category?name=<%= product.name %>"><img src="/public/uploads/<%= product.image[0]%>" alt="mobile"></a>
+                  <h3><%= product.name %></h3>
+                  <h4>5000mAh Bttery</h4>
+                  <h6 style="color: black;"><i class="fas fa-rupee-sign"></i>  <%= product.price %></h6>
+              </div>
+                <% }%>
+              
+              <% }) %>
+          <% } %>
+      </div>
+  </div>
+</section>
+
+
+ <!-- mens clothing -->
+
+ <section>
+  <div class="card">
+      <div class="common-heading">
+       <div class="common-heading-left">
+           <h1>Top Deals on Electronics </h1>
+           <h2>Up to 50% OFF</h2>
+       </div>
+       <div class="common-heading-right">
+        <a href="/category?name=Electronics"><button>view all</button></a>
+       </div>
+      </div>
+      <div class="common-row">
+
+
+       <div class="common-row">
+
+        <% if (headphones==null) { %>
+          <p>No products available</p>
+          <% }else { %>
+            <% headphones.forEach(product => { %>
+              <div class="common-col">
+                <a href="user/category?name=<%= product.name %>"><img src="/public/uploads/<%= product.image[0]%>" alt="mobile"></a>
+                <h3><%= product.name %></h3>
+                <h4>5000mAh Bttery</h4>
+                <h6 style="color: black;"><i class="fas fa-rupee-sign"></i>  <%= product.price %></h6>
+            </div>
+              <% }) %>
+          <% } %>
+      </div>
+       
+       
+   </div>
+  </div>
+</section>
+
+
+
+ 
+
+  <%- include('include/_footer')%>
+ 

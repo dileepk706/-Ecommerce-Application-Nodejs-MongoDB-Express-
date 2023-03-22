@@ -1,0 +1,50 @@
+
+<!-- <div class="main ">
+
+    <h1 style="margin-top: 10px;margin-left: 20px;">category</h1>
+    <div class="charts">
+        <div class="chart">
+            <h2>Earnings (past 12 months)</h2>
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro voluptate praesentium, eaque omnis esse velit nihil consequuntur ex ab? Quas atque hic odit maxime debitis itaque libero dolorem quia totam nulla quidem laborum temporibus perspiciatis blanditiis architecto sint quos, asperiores dolor quae expedita odio soluta repudiandae quaerat magnam. Pariatur consequuntur corporis nihil, reiciendis voluptatem possimus consequatur vel iste perferendis quos enim fuga sint repellendus earum expedita hic vitae nulla saepe porro aliquam assumenda alias. Autem culpa cumque in possimus eaque modi unde dolorum ducimus asperiores blanditiis voluptatibus, ipsa eos itaque, laboriosam quia ratione hic quidem incidunt rerum cupiditate reiciendis enim?
+            </div>
+        </div>
+        
+    </div>
+</div> -->
+
+
+
+
+
+<%- include('include/_adminSideBar')%>
+
+
+<div class="main">
+    <div class="container ml-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-top: 10px;margin-left: 20px;">Add Category</h1>
+            </div>
+        </div>
+                            
+        <div class="row">
+            <div class="col-md-12">
+              <form action="/admin/category/add_category" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="name">Category Name</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" required>
+                </div>
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
+                </div>
+                <button id="btn" type="submit" class="btn btn-primary">Add Category</button>
+              </form>
+            </div>
+          </div>
+
+    </div>
+</div>
+
+<%- include('include/_adminFooter')%>

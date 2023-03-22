@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- metas -->
+     <meta charset="utf-8">
+     <meta name="author" content="Chitrakoot Web" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+     <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+ 
+     <!-- title  -->
+     <title>shopSmart</title>
+ 
+     <!-- favicon -->
+     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+     <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+     <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+ 
+     <!-- plugins -->
+     <link rel="stylesheet" href="/public/css/plugins.css">
+ 
+     <!-- theme core css -->
+     <link href="/public/css/product_styles.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('include/_header')%>
+
+    <!-- CHECKOUT
+        ================================================== -->
+        <section class="md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="process-steps mb-1-9 mb-lg-6">
+                            <a class="step" href="shop-checkout-address.html"><i class="ti-direction-alt"></i><h4 class="step-title">1. Address</h4></a>
+                            <!-- <a class="step" href="shop-checkout-shipping.html"><i class="ti-truck"></i><h4 class="step-title">2. Shipping</h4></a> -->
+                            <a class="step active" href="shop-checkout-payment.html"><i class="ti-wallet"></i><h4 class="step-title">3. Payment</h4></a>
+                            <a class="step" href="shop-checkout-review.html"><i class="ti-check-box"></i><h4 class="step-title">4. Review</h4></a>
+                        </div>
+                    </div>
+
+                    <!-- left pannel section -->
+                    <div style="width: 65%;" class="col-lg-9 col-md-12 ps-2-3 mb-1-9 mb-lg-0">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="mb-0">Choose Payment Method</h4>
+                            </div>
+
+                            <div id="accordion" class="accordion-style3">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="far fa-credit-card pe-2 display-29"></i>Pay with Credit Card</button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <h6 class="display-30 font-weight-600 mb-2">We accept following credit cards:</h6>
+
+                                            <ul class="list-style-17 mb-4">
+                                                <li><img src="img/content/payment-options/visa.png" alt="..."></li>
+                                                <li><img src="img/content/payment-options/mastercard.png" alt="..."></li>
+                                                <li><img src="img/content/payment-options/amex.png" alt="..."></li>
+                                                <li><img src="img/content/payment-options/discover.png" alt="..."></li>
+                                            </ul>
+
+                                            <form>
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>First Name</label>
+                                                            <input type="text" class="form-control" name="name" placeholder="Your name here">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>Card Number</label>
+                                                            <input type="text" class="form-control" name="cardnumber" placeholder="Your card number here">
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>Month / Year</label>
+                                                            <input type="text" class="form-control" name="month" placeholder="MM/YY">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>CVC</label>
+                                                            <input type="text" class="form-control" name="cvc" placeholder="CVC">
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <a href="#" class="butn-style2 mt-3">Submit</a>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="far fa-credit-card pe-2 display-29"></i>Cash On Delivery</button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <h6 class="display-30 font-weight-600 mb-2">We accept following credit cards:</h6>
+ 
+
+                                            <form>
+
+                                               
+
+                                                <a href="#" class="butn-style2 mt-3">Submit</a>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <!-- <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fab fa-paypal pe-2 display-29"></i>Pay with PayPal </button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <h6 class="display-30 font-weight-600 mb-2">Paypal takes good care of you.</h6>
+
+                                            <form>
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>Email Address</label>
+                                                            <input type="text" class="form-control" name="email" placeholder="Your email address here">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <label>Password </label>
+                                                            <input type="password" class="form-control" name="password" placeholder="Your password here">
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <a href="#" class="m-link-muted">Forgot password?</a>
+                                                    </div>
+
+                                                </div>
+
+                                                <button type="button" class="butn-style2 mt-3">Login</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div> -->
+
+
+
+
+
+
+
+
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Cash On Delivery </button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <h6 class="display-30 font-weight-600 mb-2">Cash On Delivery</h6>
+
+                                                <a href="/checkout-review?method=COD "><button type="button" class="butn-style2 mt-3">Confirm Order</button></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fas fa-award pe-2 display-29"></i>Redeem Reward Points </button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <h6 class="display-30 font-weight-600 mb-2">You currently have<span class="text-medium"> 9386</span> Reward Points to spend.</h6>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="reward_points">
+                                                <label class="form-check-label" for="reward_points">Use my reward points to pay for this order.</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="buttons-set">
+                                <a href="/checkout-address" class="butn-style2 wide"><i class="fas fa-arrow-left me-1"></i> Back</a>
+                                <!-- <a href="shop-checkout-review.html" class="butn-style2 wide">Continue <i class="fas fa-arrow-right ms-1"></i></a> -->
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end left pannel section -->
+
+                    <!-- right pannel section -->
+                    <div  style="width: 35%;" class="col-lg-3 col-12 side-bar">
+
+                        <div class="widget">
+
+                            <div class="widget-title">
+                                <h5>Order Summary</h5>
+                            </div>
+    
+                            <table class="table classic">
+                                <tbody>
+                                    <% cartData.product.forEach(prdct => { %>
+    
+                                        <tr>
+                                            <th><%= prdct.item.name %>:</th>
+                                            <td class="text-gray-dark">₹ <%= prdct.sub_total %> </td>
+                                        </tr>
+    
+                                        <% }) %>
+                                    
+                                    <tr>
+                                        <th>Shipping:</th>
+                                        <td class="text-gray-dark">Free</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Estimated tax:</th>
+                                        <td class="text-gray-dark">$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td class="text-lg text-gray-dark">$<%= cartData.total_amount %></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- <div class="widget">
+
+                            <div class="widget-title">
+                                <h5>Popular Products</h5>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <img src="img/products/thumbs/thumb-06.jpg" alt="...">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <a href="#" class="mb-1 font-weight-600 text-extra-dark-gray">Men's Football Boots</a>
+                                    <span class="d-block">$15.00</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <img src="img/products/thumbs/thumb-01.jpg" alt="...">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <a href="#" class="mb-1 font-weight-600 text-extra-dark-gray">Leather Motorcycle Gloves</a>
+                                    <span class="d-block">$12.10</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <img src="img/products/thumbs/thumb-02.jpg" alt="...">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <a href="#" class="mb-1 font-weight-600 text-extra-dark-gray"> Sun Protection Cap </a>
+                                    <span class="d-block">$10.20</span>
+                                </div>
+                            </div>
+
+                        </div> -->
+
+                    </div>
+                    <!-- end right pannel section -->
+
+                </div>
+            </div>
+        </section>
+        <!-- jQuery -->
+    <script src="/public/productJs/jquery.min.js"></script>
+
+    <!-- popper js -->
+    <script src="/public/productJs/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/public/productJs/bootstrap.min.js"></script>
+
+    <!-- core.min.js -->
+    <script src="/public/productJs/core.min.js"></script>
+
+    <!-- zoom js -->
+    <script src="/public/productJs/xzoom.js"></script>
+
+    <!-- hammer js -->
+    <script src="/public/productJs/jquery.hammer.min.js"></script>
+
+    <!-- setup js -->
+    <script src="/public/productJs/setup.js"></script>
+
+    <!-- custom scripts -->
+    <script src="/public/productJs/main.js"></script>
+
+
+</body>
+</html>
