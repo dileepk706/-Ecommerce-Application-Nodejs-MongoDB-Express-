@@ -1,0 +1,262 @@
+
+
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+
+
+<!-- PAGE CONTENT
+        ================================================== -->
+        <div class="page-content">
+
+            <!-- PAGE HEADER
+            ================================================== -->
+            <div class="page-header">
+                <div class="search-form">
+                    <form action="#" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control search-input" placeholder="Type something...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="close-search" type="button"><i class="icon-close"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="#" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                                <a class="logo-box" href="index.html"><img src="../img/logos/logo.png" class="logo" alt="..."></a>
+                            </div>
+                            <button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                                <li><a href="#" id="toggle-fullscreen"><i class="fa fa-expand"></i></a></li>
+                                <li><a href="#" id="search-button"><i class="fa fa-search"></i></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"><i class="fa fa-envelope"></i></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i></a>
+                                    <ul class="dropdown-menu dropdown-lg dropdown-content">
+                                        <li class="drop-title">Notifications<a href="#" class="drop-title-link"><i class="fa fa-angle-right"></i></a></li>
+                                        <li class="slimscroll dropdown-notifications">
+                                            <ul class="list-unstyled dropdown-oc">
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="far fa-image"></i></span>
+                                                        <span class="notification-info">Finished uploading photos to gallery <b>"South Africa"</b>.
+                                                            <small class="notification-date">20:00</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
+                                                        <span class="notification-info"><b>John Doe</b> mentioned you in a post "Update v1.5".
+                                                            <small class="notification-date">06:07</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-danger"><i class="fa fa-bolt"></i></span>
+                                                        <span class="notification-info">4 new special offers from the apps you follow!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-success"><i class="fa fa-bullhorn"></i></span>
+                                                        <span class="notification-info">There is a meeting with <b>Ethan</b> in 15 minutes!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/avatars/user-dropdown.jpg" alt="..." class="rounded-circle"></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Calendar</a></li>
+                                        <li><a href="#"><span class="badge float-end badge-danger">42</span>Messages</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Account Settings</a></li>
+                                        <li><a href="#">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+
+            <!-- PAGE INNER
+            ================================================== -->
+            <div class="page-inner">
+
+                <!-- PAGE MAIN WRAPPER
+                ================================================== -->
+                <div id="main-wrapper">
+                    <!-- row -->
+                    <div class="row align-items-center grid-margin">
+                        <div class="col-12">
+                            <div class="card card-white">
+                                <div class="card-body row align-items-center">
+                                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                                        <h4 class="mb-0">Orders</h4>
+                                    </div>
+
+                                    <div class="col-12 col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-3 mb-3 mb-md-0">
+                                                <select class="form-control form-select">
+                                                    <option>Status</option>
+                                                    <option>Deliveres</option>
+                                                    <option>Pending</option>
+                                                    <option>Processing</option>
+                                                    <option>Failed</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-3 mb-3 mb-md-0">
+                                                <select class="form-control form-select">
+                                                    <option>Order Limits</option>
+                                                    <option>Last 7 Orders</option>
+                                                    <option>Last 15 Orders</option>
+                                                    <option>Last 30 Orders</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="exampleInputEmail1" placeholder="search by name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Latest Transaction</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead class="bg-light">
+                                                <tr>
+                                                    <th>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                            <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+                                                        </div>
+                                                    </th>
+                                                    <th>Order ID</th>
+                                                    <th>user Id</th>
+                                                    <th>Date</th>
+                                                    <th>Payment Method</th>
+                                                    <th>Total</th>
+                                                    <th>Order Status</th>
+                                                    <th>View Details</th>
+                                                     
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%order.forEach(Order=>{%>
+                                                
+                                                    
+
+                                                    <%Order.items.forEach(product=>{%>
+                                                        <tr>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                                <label class="custom-control-label" for="customCheck2">&nbsp;</label>
+                                                            </div>
+                                                        </td>
+                                                        <td><%=Order.orderId%></td>
+                                                        <td><%=Order.user._id%></td>
+                                                        <td>
+                                                            20 Mar, 2022
+                                                        </td>
+    
+                                                        <td>
+                                                            <%if(Order.paymentMethod=='COD'){%>
+                                                                <p></p><%=Order.paymentMethod%>
+                                                                <%}%>
+                                                            <%if(Order.paymentMethod=='online payment'){%>
+                                                                <i class="fab fa-cc-mastercard me-1"></i> <%=Order.paymentMethod%>
+                                                                <%}%>
+                                                            
+                                                        </td>
+
+                                                        <td>
+                                                            $ <%=product.sub_total%>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                            <%if(product.status=='cancelled'){%>
+                                                                <span class="badge rounded-pill bg-soft-pink"><%=product.status%></span>
+                                                                <%}%>
+                                                               
+                                                                    <%if(product.status=='return'||product.status=='refund-approved'){%>
+                                                                        <span class="badge rounded-pill bg-soft-orange"><%=product.status%></span>
+                                                                        <%}%>
+                                                                        <%if(product.status=='placed'||product.status=='shipped'||product.status=='delivered'||product.status=='return-denied'){%>
+                                                                            <span class="badge rounded-pill bg-soft-green"><%=product.status%></span>
+                                                                            <%}%> 
+                                                        </td>
+                                                        <td>
+                                                            <a href="/admin/order?prdctId=<%=product.item%>&ordId=<%=Order._id%>"><button type="button" class="btn btn-primary btn-sm btn-rounded">
+                                                                View Details
+                                                            </button></a>
+    
+                                                        </td>
+
+                                                </tr>
+
+                                                    <%})%>
+                                                   
+                                                    
+                                                   
+                                                     
+
+
+                                                <%})%>
+                                                 
+                                                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+
+                 
+            </div>
+
+             
+ 
+             
+        </div>
+
+
+
+
+<%- include('include/_footer')%>

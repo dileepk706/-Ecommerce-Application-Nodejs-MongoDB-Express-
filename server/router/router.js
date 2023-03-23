@@ -21,6 +21,7 @@ const userProfile=require('../controller/user/profile')
 const checkout=require('../controller/user/checkout')
 const orders_and_wishlist=require('../controller/user/ordersAndWishlist')
 const wishlist=require('../controller/user/wishList')
+const user_management=require('../controller/admin/userManagement')
 
 
 // multerSetup
@@ -89,6 +90,7 @@ router.get('/admin/category' ,category.categoryList)
 router.get('/admin/products',product.productList)
 router.get('/admin/category_and_subcategory_list',category.categoryDetails)
 router.get('/admin/products/edit',product.product_details)
+router.get('/admin/user_management',user_management.get_all_users );
 
 router.post('/admin/signup',(req,res)=>{res.json(' hi ')})
 router.post('/admin/login',adminLogin.adminLogin)
@@ -104,6 +106,7 @@ router.delete('/admin/category/delete',category.deleteCategory)
 router.delete('/admin/category/delete_subcategory',category.deleteSubCategory)
 router.delete('/admin/products/delete',product.deleteProduct)
 
+router.patch('/admin/user_action',user_management.block_unblock_user)
 
 
 
@@ -125,6 +128,7 @@ router.get('/checkout-review',nocache(),checkout.checkout_review)
 router.get('/checkout-complete',checkout.checkout_complete)
 router.get('/myorders',orders_and_wishlist.get_all_orders)
 router.get('/wishlist',wishlist.get_wishlist)
+router.get('/return',orders_and_wishlist.return_order)
 
 router.post('/add_address',userProfile.createAddress)
 router.post('/signup',userAccount.userRegistration)
@@ -147,58 +151,58 @@ const User=require('../model/user/user')
 const mongoose = require('mongoose');
 
 
- 
-router.get('/admin/user_management', (req, res) => {
-  User.find({}, {name: 1, email: 1, status: 1, _id: 1, createdAt: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } } }).then(userData => {
-    res.render('userManagement',{userData});
-  }).catch(err => {
-    res.send({ message: err });
+
+router.get('/admin/orders',(req,res)=>{
+
+  Order.find().then(order=>{
+    console.log(order);
+    res.render('orderList',{order})
+  }).catch(err=>{
     console.log(err);
-  });
-});
-
-router.patch('/admin/user_action',(req,res)=>{
-
-  const {action,_id}=req.query
-  console.log(action+'hi'+_id);
-  if(action==0){
-    User.findByIdAndUpdate({_id},{status:false})
-    .then(data=>{
-      res.json({message:'Blocked the User'})
-    }).catch(err=>{
-      res.json({message:'somthing went wrong'})
-    })
-  }
-  if(action==1){
-    User.findByIdAndUpdate({_id},{status:true})
-    .then(data=>{
-      res.json({message:'Unblocked the user'})
-    }).catch(err=>{
-      res.json({message:'somthing went wrong'})
-    })
-  }
-})
-
-const random_string=require('randomstring')
-
-router.get('/forgot_password',(req,res)=>{
-
-  res.render('forgetPassword')
-})
-
-router.post('/forgot_password',(req,res)=>{
-
-  const email=req.body.email
-  User.findOne({email:email}).then(user_data=>{
-    if(user_data){
-
-      const randomString=random_string.generate()
-    }else{
-      res.render('forgetPassword',({message:'Email Id is incorect'}))
-    }
+    
   })
-  res.send(email)
+  
 })
+
+router.get('/admin/order',(req,res)=>{
+  const {prdctId,ordId}=req.query
+
+  Order.findById({_id:ordId}).then(order=>{
+    console.log("order data ="+order);
+
+    const order_prdct=order.items.find(ord_prdct=> ord_prdct.item._id==prdctId)
+    console.log("order prodeuct ="+order_prdct.status);
+
+    Product.findById({_id:prdctId},{name:1,price:1,_id:1}).then(product=>{
+
+      console.log('product= '+product);
+      res.render('order',{order,order_prdct,product})
+
+    })
+  })
+})
+
+
+// const random_string=require('randomstring')
+
+// router.get('/forgot_password',(req,res)=>{
+
+//   res.render('forgetPassword')
+// })
+
+// router.post('/forgot_password',(req,res)=>{
+
+//   const email=req.body.email
+//   User.findOne({email:email}).then(user_data=>{
+//     if(user_data){
+
+//       const randomString=random_string.generate()
+//     }else{
+//       res.render('forgetPassword',({message:'Email Id is incorect'}))
+//     }
+//   })
+//   res.send(email)
+// })
 
 
 
@@ -220,6 +224,7 @@ router.post('/forgot_password',(req,res)=>{
 
 const {sendOTP,verifyOTP}=require('../controller/twilio-sms');
 const { response } = require('express');
+const order = require('../model/order/order');
 
 router.get('/twilio-sms/Request_OTP',(req,res)=>{
  res.render('login_otp',{message:null})

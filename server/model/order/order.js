@@ -25,6 +25,7 @@ const orderSchema = new mongoose.Schema({
       enum: ['online payment', 'COD',],
       required: true
     },
+  
     total_amount:{
         type:Number
     },

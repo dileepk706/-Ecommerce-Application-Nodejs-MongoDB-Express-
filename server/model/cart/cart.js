@@ -33,10 +33,13 @@ const cartShema = new Schema({
       },
       status:{
         type: String,
-        enum: ['placed', 'shipped', 'delivered','cancelled'],
+        enum: ['placed', 'shipped', 'delivered','cancelled','return','refund-approved','return-denied'],
+        
         default: 'placed'
+      },
+      
     }
-}],
+],
   total_amount:{
     type:Number
   }

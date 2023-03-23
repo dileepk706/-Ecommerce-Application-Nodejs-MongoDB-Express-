@@ -68,3 +68,24 @@ exports.get_all_orders=(req,res)=>{
     })
   
   }
+
+exports.return_order=(req,res)=>{
+  const {order_id,product_id}=req.query 
+  console.log(`orderid=${order_id} prodv=${product_id}`);
+
+  Order.findById({_id:order_id}).then(order_data=>{
+
+    let product=order_data.items.find(prdct=> prdct.item._id==product_id)
+    console.log(product);
+    product.status="return"
+    order_data.markModified('items')
+    return order_data.save().then(data=>{
+      console.log('hi'+data);
+      res.json({message:'Return request has gone to Admin'})
+    }).catch(err=>{
+      res.json({message:'somthing went wrong'})
+    })
+
+  })
+
+}

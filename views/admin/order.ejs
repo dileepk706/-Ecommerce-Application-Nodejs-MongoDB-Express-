@@ -1,0 +1,395 @@
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+
+
+
+<!-- PAGE CONTENT
+        ================================================== -->
+        <div class="page-content">
+
+            <!-- PAGE HEADER
+            ================================================== -->
+            <div class="page-header">
+                <div class="search-form">
+                    <form action="#" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control search-input" placeholder="Type something...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="close-search" type="button"><i class="icon-close"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="#" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                                <a class="logo-box" href="index.html"><img src="../img/logos/logo.png" class="logo" alt="..."></a>
+                            </div>
+                            <button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                                <li><a href="#" id="toggle-fullscreen"><i class="fa fa-expand"></i></a></li>
+                                <li><a href="#" id="search-button"><i class="fa fa-search"></i></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"><i class="fa fa-envelope"></i></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i></a>
+                                    <ul class="dropdown-menu dropdown-lg dropdown-content">
+                                        <li class="drop-title">Notifications<a href="#" class="drop-title-link"><i class="fa fa-angle-right"></i></a></li>
+                                        <li class="slimscroll dropdown-notifications">
+                                            <ul class="list-unstyled dropdown-oc">
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="far fa-image"></i></span>
+                                                        <span class="notification-info">Finished uploading photos to gallery <b>"South Africa"</b>.
+                                                            <small class="notification-date">20:00</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
+                                                        <span class="notification-info"><b>John Doe</b> mentioned you in a post "Update v1.5".
+                                                            <small class="notification-date">06:07</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-danger"><i class="fa fa-bolt"></i></span>
+                                                        <span class="notification-info">4 new special offers from the apps you follow!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="notification-badge bg-success"><i class="fa fa-bullhorn"></i></span>
+                                                        <span class="notification-info">There is a meeting with <b>Ethan</b> in 15 minutes!
+                                                            <small class="notification-date">Yesterday</small>
+                                                        </span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/avatars/user-dropdown.jpg" alt="" class="rounded-circle"></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Calendar</a></li>
+                                        <li><a href="#"><span class="badge float-end badge-danger">42</span>Messages</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Account Settings</a></li>
+                                        <li><a href="#">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+
+            <!-- PAGE INNER
+            ================================================== -->
+            <div class="page-inner">
+
+                <!-- PAGE MAIN WRAPPER
+                ================================================== -->
+                <div id="main-wrapper">
+                    <!-- row -->
+                    <div class="row g-xl-3">
+                        <div class="col-xl-4 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">General</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <%if(order_prdct.status=='return'){%>
+
+                                        <form action="/admin/return" class="needs-validation" novalidate>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-2">
+                                                    <div class="form-group">
+                                                        <label for="validationCustom01">Status</label>
+                                                        <select name="retstat" class="form-select form-control" id="validationCustom01" aria-label="Default select example">
+                                                            <option selected>Return request</option>
+                                                            <option value="refund-approved">Approve</option>
+                                                            <option value="return-denied">Reject</option>
+                                                        </select>
+                                                        <button class="mt-2">submit</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <div class="form-group">
+                                                        <label>Reson</label>
+                                                        <div>
+                                                            <input type="text" readonly class="form-control date-picker">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 
+                                            </div>
+                                        </form>
+
+                                        <%}else{%>
+                                            <%if(order_prdct.status=='cancelled'){%>
+                                                <label style="color: red;" for="validationCustom01">Item cancelled!</label>
+                                                <div class="col-md-12 mb-2">
+                                                    <div class="form-group">
+                                                        <label>Reson</label>
+                                                        <div>
+                                                            <input type="text" readonly class="form-control date-picker">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <%}else{%>
+                                                    <%if(order_prdct.status=='placed'){%>
+                                                        <form action="/admin/return" class="needs-validation" novalidate>
+                                                            <div class="row">
+                                                                <div class="col-md-12 mb-2">
+                                                                    <div class="form-group">
+                                                                        <label for="validationCustom01">Status</label>
+                                                                        <select class="form-select form-control" id="validationCustom01" aria-label="Default select example">
+                                                                            <option selected>Pending payment</option>
+                                                                            <option value="shipped">shipped</option>
+                                                                            <option value="delivered">delivered</option>
+                                                                            <option value="cancelled">cancelled</option>
+                                                                        </select> 
+                                                                        <button class="mt-2">submit</button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                 
+                                                            </div>
+                                                        </form>
+                                                        <%}%>
+                                                    <%if(order_prdct.status=='shipped'){%>
+                                                        <form action="/admin/return" class="needs-validation" novalidate>
+                                                            <div class="row">
+                                                                <div class="col-md-12 mb-2">
+                                                                    <div class="form-group">
+                                                                        <label for="validationCustom01">Status</label>
+                                                                        <select class="form-select form-control" id="validationCustom01" aria-label="Default select example">
+                                                                            <option selected>Pending payment</option>
+                                                                            <option value="delivered">delivered</option>
+                                                                            <option value="cancelled">cancelled</option>
+                                                                        </select> 
+                                                                        <button class="mt-2">submit</button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                 
+                                                            </div>
+                                                        </form>
+                                                        <%}%>
+
+                                                        <%if(order_prdct.status=='delivered'){%>
+                                                            <label style="color: rgb(26, 238, 72);" for="validationCustom01">Item Delivered!</label>
+                                                            <div class="col-md-12 mb-2">
+                                                                <div class="form-group">
+                                                                    <label>Review</label>
+                                                                    <div>
+                                                                        <input type="text" readonly class="form-control date-picker">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <%}%>
+                                                    
+                                                    <%}%>
+                                            
+                                            <%}%>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Address</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-auto me-xl-5 pe-xl-5 mb-4 mb-xl-0">
+                                            <h6 class="text-uppercase fw-bold mb-3"><%=order.shippingAddress%></h6>
+                                            <!-- <ul class="list-unstyled ps-0">
+                                                <li>Street Name Example</li>
+                                                <li>2233</li>
+                                                <li>Detroit</li>
+                                                <li>Michigan</li>
+                                                <li>56218</li>
+                                                <li>UK</li>
+                                            </ul>
+                                            <strong class="d-block">Email address:</strong>
+                                            <a href="#">name@domain.com</a>
+                                            <strong class="d-block mt-3">Phone:</strong>
+                                            <a href="#">1234-5678</a> -->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!-- row -->
+                    <div class="row g-xl-3">
+                        <div class="col-lg-12 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Product</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0 order-details-table">
+                                            <thead class="bg-light">
+                                                <tr>
+                                                    <th class="ps-4 id">ID</th>
+                                                    <th class="name">Name</th>
+                                                    <th class="text-end cost">Cost</th>
+                                                    <th class="text-end qty">Qty</th>
+                                                    <th class="text-end total">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="ps-4"><a href="#"><strong><%=product._id%></strong></a></td>
+                                                    <td><a href="#"><%=product.name%></a></td>
+                                                    <td class="text-end">₹ <%=product.price%></td>
+                                                    <td class="text-end"><%=order_prdct.quantity%></td>
+                                                    <td class="text-end">₹<%=order_prdct.sub_total%></td>
+                                                </tr>
+                                                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row justify-content-end flex-column flex-lg-row mt-5">
+                                        
+                                        <div class="col-auto me-5">
+                                            <h6 class="fw-bold mb-2">Shipping</h6>
+                                            <span class="d-flex align-items-center">
+                                                Flat Rate
+                                                <i class="fas fa-chevron-right f-s-11 text-primary px-3"></i>
+                                                <b>₹ Free</b>
+                                            </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <h6 class="fw-bold mb-2">Order Total</h6>
+                                            <span class="d-flex align-items-center justify-content-lg-end">
+                                                <strong>₹<%=order_prdct.sub_total%></strong>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!-- row -->
+                    <div class="row g-xl-3">
+                        <div class="col-xl-4 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Shipping Information</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-borderless mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <th colspan="2">
+                                                    <p class="m-0">Arnold Jackson</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Address:</th>
+                                                <td>3389 Eglinton Avenue, Windermere, London, SK 8GH.</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Phone :</th>
+                                                <td>(123) 456-7890</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Mobile :</th>
+                                                <td>(+01) 12345 67890</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Billing Information</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-borderless table-sm mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Payment Type:</th>
+                                                <td>Credit Card</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Provider :</th>
+                                                <td>Visa ending in 2851</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Valid Date :</th>
+                                                <td>02/2021</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">CVV :</th>
+                                                <td>xxx</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 grid-margin">
+                            <div class="card card-white h-100">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Delivery Info</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <div class="my-2">
+                                            <i class="fas fa-truck-moving h1 text-muted"></i>
+                                        </div>
+                                        <h5><b>UPS Delivery</b></h5>
+                                        <div class="mt-2 pt-1">
+                                            <p class="mb-1"><span>Order ID :</span> xxxx048</p>
+                                            <p class="mb-0"><span>Payment Mode :</span> COD</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                </div>
+
+                
+            </div>
+
+            
+            
+
+    </div>
+
+
+
+
+<%- include('include/_footer')%>
