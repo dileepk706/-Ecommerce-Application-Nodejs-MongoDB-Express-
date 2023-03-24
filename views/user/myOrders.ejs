@@ -96,18 +96,31 @@
                                                             <%if(ordPrdct.status=='delivered'){%>
                                                                 <span class="fas fa-circle text-success small mr-1"></span><%=ordPrdct.status%>
                                                                 <%}%>
-                                                                <%if(ordPrdct.status=='return'){%>
-                                                                     <%=ordPrdct.status%>-PENDING
-                                                                    <%}%>
-                                                           
+                                                            <%if(ordPrdct.status=='refund-approved'){%>
+                                                                <span class="fas fa-circle text-success small mr-1"></span><%=ordPrdct.status%>
+                                                                <%}%>
+                                                            <%if(ordPrdct.status=='return-denied'){%>
+                                                                <span class="fas fa-circle text-danger small mr-1"></span><%=ordPrdct.status%>
+                                                                <%}%>
+                                                            <%if(ordPrdct.status=='return'){%>
+                                                                <span class="fas fa-circle text-danger small mr-1"></span><%=ordPrdct.status%>
+                                                                <%}%>
                                                         </td>
                                                         <%if(ordPrdct.status=='cancelled'){%>
                                                             <td><a> Order Cancelled</a></td>
                                                             <%}if(ordPrdct.status=='delivered'){%>
                                                             <td> <button onclick="return_order('<%=ordPrdct.item._id%>','<%=order._id%>')" class="btn btn-danger">Return</button> </td>
                                                             <%}if(ordPrdct.status=='placed' || ordPrdct.status=='shipped'){%>
-                                                         <td><a style="cursor: pointer;" onclick="cancellOrder('<%=ordPrdct.item._id%>','<%=order.orderId%>')" ><i class="fas fa-trash"></i></a></td>
-                                                                <%}%>
+                                                            <td><a style="cursor: pointer;" onclick="cancellOrder('<%=ordPrdct.item._id%>','<%=order.orderId%>','<%=ordPrdct.quantity%>')" ><i class="fas fa-trash"></i></a></td>
+                                                            <%}if(ordPrdct.status=='return'){%>
+                                                            <td><a>Return request sent</a></td>
+                                                            <%}%>
+                                                            <%if(ordPrdct.status=='refund-approved'){%>
+                                                                <td><a>Cash debited to wallet</a></td>
+                                                            <%}%>
+                                                            <%if(ordPrdct.status=='return-denied'){%>
+                                                                <td><a>Oops!</a></td>
+                                                            <%}%>
                                                     </tr>
                                                     <%})%>
         
@@ -159,7 +172,7 @@
 
 
 
-            function cancellOrder(prdctId,ordId){
+            function cancellOrder(prdctId,ordId,qty){
                 
                
                 Swal.fire({
@@ -172,7 +185,7 @@
                     confirmButtonText: 'Yes, remove it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        fetch(`http://localhost:3000/myorders/cancelorder?prdctId=${prdctId}&ordId=${ordId}`,{
+                        fetch(`http://localhost:3000/myorders/cancelorder?prdctId=${prdctId}&ordId=${ordId}&qty=${qty}`,{
                     method:'DELETE'
                 }).then(response=>response.json()).then(data=>{
                     alert(data.message)

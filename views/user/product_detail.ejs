@@ -79,7 +79,7 @@
                             </div>
                             <div class="mb-4">
                                 <!-- <span class="me-3 display-26 font-weight-600 offer-price"><%= product.price %> </span> -->
-                                <span class="display-26 font-weight-700 text-primary"><%= product.price %> </span>
+                                <span class="display-26 font-weight-700 text-primary">₹ <%= product.price %> </span>
                             </div>
 
                             <!-- <div class="row">
@@ -107,17 +107,21 @@
                                 </div>
                             </div> -->
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-4 col-lg-2">
                                     <label>Qty:</label>
                                     <input type="text" value="1" placeholder="1" class="form-control medium mb-4">
                                 </div>
 
-                            </div>
+                            </div> -->
 
                             <div class="row mb-4">
                                 <div class="col-lg-12">
+                                    <%if(product.quantity<=0){%>
+                                        <span class="ml-5" style="color: red; font-size: 30px;">Out of stock</span>
+                                    <%}else{%>
                                     <a href="/viewcart?product=<%=product._id%>"><button class="butn-style2 me-3 mb-2 mb-md-0"><span><i class="fas fa-shopping-cart me-1"></i> Add to Cart</span></button></a>
+                                            <%}%>
                                     <a onclick="add_wishlist('<%=product._id%>')" ><button class="butn-style2 dark"><span><i class="fas fa-heart me-1"></i> Add to wishlist</span></button></a>
                                 </div>
                             </div>

@@ -115,17 +115,17 @@
 
                                     <%if(order_prdct.status=='return'){%>
 
-                                        <form action="/admin/return" class="needs-validation" novalidate>
+                                        <!-- <form action="/admin/return" class="needs-validation" novalidate> -->
                                             <div class="row">
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group">
                                                         <label for="validationCustom01">Status</label>
                                                         <select name="retstat" class="form-select form-control" id="validationCustom01" aria-label="Default select example">
-                                                            <option selected>Return request</option>
+                                                            
                                                             <option value="refund-approved">Approve</option>
                                                             <option value="return-denied">Reject</option>
                                                         </select>
-                                                        <button class="mt-2">submit</button>
+                                                        <button onclick="change_status('<%=order_prdct.item%>','<%=order._id%>','<%=order_prdct.quantity%>')" class="btn btn-success mt-2">submit</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-2">
@@ -138,7 +138,7 @@
                                                 </div>
                                                  
                                             </div>
-                                        </form>
+                                        <!-- </form> -->
 
                                         <%}else{%>
                                             <%if(order_prdct.status=='cancelled'){%>
@@ -153,43 +153,39 @@
                                                 </div>
                                                 <%}else{%>
                                                     <%if(order_prdct.status=='placed'){%>
-                                                        <form action="/admin/return" class="needs-validation" novalidate>
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-2">
                                                                     <div class="form-group">
                                                                         <label for="validationCustom01">Status</label>
                                                                         <select class="form-select form-control" id="validationCustom01" aria-label="Default select example">
-                                                                            <option selected>Pending payment</option>
                                                                             <option value="shipped">shipped</option>
                                                                             <option value="delivered">delivered</option>
                                                                             <option value="cancelled">cancelled</option>
                                                                         </select> 
-                                                                        <button class="mt-2">submit</button>
+                                                                        <button onclick="change_status('<%=order_prdct.item%>','<%=order._id%>')" class="btn btn-success mt-2">submit</button>
+
                                                                     </div>
                                                                 </div>
                                                                 
                                                                  
                                                             </div>
-                                                        </form>
                                                         <%}%>
                                                     <%if(order_prdct.status=='shipped'){%>
-                                                        <form action="/admin/return" class="needs-validation" novalidate>
                                                             <div class="row">
                                                                 <div class="col-md-12 mb-2">
                                                                     <div class="form-group">
                                                                         <label for="validationCustom01">Status</label>
                                                                         <select class="form-select form-control" id="validationCustom01" aria-label="Default select example">
-                                                                            <option selected>Pending payment</option>
                                                                             <option value="delivered">delivered</option>
                                                                             <option value="cancelled">cancelled</option>
                                                                         </select> 
-                                                                        <button class="mt-2">submit</button>
+                                                                        <button onclick="change_status('<%=order_prdct.item%>','<%=order._id%>')" class="btn btn-success mt-2">submit</button>
+
                                                                     </div>
                                                                 </div>
                                                                 
                                                                  
                                                             </div>
-                                                        </form>
                                                         <%}%>
 
                                                         <%if(order_prdct.status=='delivered'){%>
@@ -203,6 +199,12 @@
                                                                 </div>
                                                             </div>
                                                             <%}%>
+                                                            <%if(order_prdct.status=='refund-approved' ||order_prdct.status=='return-denied' ){%>
+                                                                <label style="color: rgb(26, 238, 72);" for="validationCustom01"><%=order_prdct.status%> </label>
+                                                                <div class="col-md-12 mb-2">
+                                                                     
+                                                                </div>
+                                                                <%}%>
                                                     
                                                     <%}%>
                                             
@@ -389,7 +391,31 @@
 
     </div>
 
-
+    <script>
+        function change_status(prdctId,ordId,qty){
+            
+            const status=document.querySelector('#validationCustom01')
+            fetch('/admin/status',{
+            method:'PUT',
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({
+                ordId:ordId,
+                prdctId:prdctId,
+                status:status.value,
+                qty:qty
+            })
+            }).then(res=>{
+            res.json().then(data=>{
+                alert(data.message)
+                // window.location.href = '/admin/order';
+            })
+            }).catch(err=>{
+            console.log(err.message);
+        })
+        }
+    </script>
 
 
 <%- include('include/_footer')%>

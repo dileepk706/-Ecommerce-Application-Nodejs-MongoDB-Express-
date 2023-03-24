@@ -4,7 +4,7 @@ const Product=require('../../model/product/product')
 exports.get_wishlist=(req,res)=>{
     const _id = req.session.user;
   
-    User.findById({ _id: _id }).populate('wishlist')
+    User.findById({ _id: _id }).populate('wishlist') 
       .then(data => {
         const sortedWishlist = data.wishlist.sort((a, b) => b._id - a._id);
         res.render('wishlist', { data: { wishlist: sortedWishlist } });

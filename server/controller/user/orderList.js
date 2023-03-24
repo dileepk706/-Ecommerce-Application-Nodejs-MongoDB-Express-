@@ -1,4 +1,5 @@
 const Order=require('../../model/order/order')
+const Product=require('../../model/product/product')
 
 exports.get_all_orders=(req,res)=>{
     const user_id=req.session.user
@@ -6,7 +7,7 @@ exports.get_all_orders=(req,res)=>{
     .populate({
       path: 'items.item',
       model: 'product'
-    })
+    }).sort({createdAt:-1})
     .then((orders)=> {
       res.render('myOrders',{orders})
     }).catch(err=>{
@@ -53,7 +54,7 @@ exports.get_all_orders=(req,res)=>{
 
     const product_id=req.query.prdctId
     const ORD_id=req.query.ordId
-  
+    const qty=req.query.qty
     Order.findOne({orderId:ORD_id}).then(orderData=>{
       const prdctStat=orderData.items.find(data=> data.item._id==product_id)
       prdctStat.status="cancelled"
@@ -61,12 +62,19 @@ exports.get_all_orders=(req,res)=>{
       return orderData.save()
     })
     .then(savedStatus=>{
-      res.json({message:'Order Cancelled!'})
+      Product.findOne({_id:product_id}).then(data=>{
+        const changd_qty=data.quantity+qty
+        data.quantity=changd_qty
+        return data.save()
+      }).then(data=>{
+        res.json({message:'Order Cancelled!'})
+      }).catch(err=>{
+        console.log(err)
+      })
     })
     .catch(err=>{
       res.json({message:err})
     })
-  
   }
 
 exports.return_order=(req,res)=>{

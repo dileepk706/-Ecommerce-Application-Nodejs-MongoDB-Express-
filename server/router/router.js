@@ -19,9 +19,10 @@ const adminMidleWare=require('../middleWares/adminAuth')
 const product_shoping=require('../controller/user/shoping')
 const userProfile=require('../controller/user/profile')
 const checkout=require('../controller/user/checkout')
-const orders_and_wishlist=require('../controller/user/ordersAndWishlist')
+const orders_and_wishlist=require('../controller/user/orderList')
 const wishlist=require('../controller/user/wishList')
 const user_management=require('../controller/admin/userManagement')
+const orders=require('../controller/admin/orders')
 
 
 // multerSetup
@@ -91,6 +92,8 @@ router.get('/admin/products',product.productList)
 router.get('/admin/category_and_subcategory_list',category.categoryDetails)
 router.get('/admin/products/edit',product.product_details)
 router.get('/admin/user_management',user_management.get_all_users );
+router.get('/admin/orders',orders.get_all_orders)
+router.get('/admin/order',orders.order_details)
 
 router.post('/admin/signup',(req,res)=>{res.json(' hi ')})
 router.post('/admin/login',adminLogin.adminLogin)
@@ -150,37 +153,49 @@ const User=require('../model/user/user')
 
 const mongoose = require('mongoose');
 
+router.put('/admin/status',(req,res)=>{
 
+  const {ordId,prdctId,status}=req.body
+  const qty=parseInt(req.body.qty)
+  console.log('qty:'+qty);
+  // console.log('order='+ordId+"product ="+prdctId+"stat ="+status);
+  Order.findById({_id:ordId}).then(ord_data=>{
 
-router.get('/admin/orders',(req,res)=>{
+    if(status==='refund-approved'){
+      
+      Product.findById({_id:prdctId}).then(data=>{
+        const changd_qty=data.quantity+qty
+        data.quantity=changd_qty
+        return data.save()
+      }).then(data=>{
+        change_stat()
+      }).catch(err=>{
+        console.log(err)
+      })
+    }else{
+      change_stat()
+    }
+    function change_stat(){
+      const prdct=ord_data.items.find(prdct_data=>prdct_data.item._id==prdctId)
+    prdct.status=status
+    ord_data.markModified('items')
+    ord_data.save().then(data=>{
+      res.json({message:'Status changed'})
 
-  Order.find().then(order=>{
-    console.log(order);
-    res.render('orderList',{order})
-  }).catch(err=>{
-    console.log(err);
-    
-  })
-  
-})
-
-router.get('/admin/order',(req,res)=>{
-  const {prdctId,ordId}=req.query
-
-  Order.findById({_id:ordId}).then(order=>{
-    console.log("order data ="+order);
-
-    const order_prdct=order.items.find(ord_prdct=> ord_prdct.item._id==prdctId)
-    console.log("order prodeuct ="+order_prdct.status);
-
-    Product.findById({_id:prdctId},{name:1,price:1,_id:1}).then(product=>{
-
-      console.log('product= '+product);
-      res.render('order',{order,order_prdct,product})
+    }).catch(err=>{
+      console.log(err);
+      res.json({message:'Somthing went wrong'})
 
     })
+    }
+
+  }).catch(err=>{
+    console.log(err);
+    res.json({message:'Somthing went wrong'})
+
   })
 })
+
 
 
 // const random_string=require('randomstring')

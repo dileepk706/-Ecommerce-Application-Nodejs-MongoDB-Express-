@@ -167,6 +167,7 @@ exports.change_qty=(req,res)=>{
         if(qty<1){
           qty=1
         }
+        
         const prodctPrice=req.query.price
         const sub_total=qty*prodctPrice
   
