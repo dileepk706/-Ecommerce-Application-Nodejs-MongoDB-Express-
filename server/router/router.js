@@ -19,7 +19,7 @@ const adminMidleWare=require('../middleWares/adminAuth')
 const product_shoping=require('../controller/user/shoping')
 const userProfile=require('../controller/user/profile')
 const checkout=require('../controller/user/checkout')
-const orders_and_wishlist=require('../controller/user/orderList')
+const orderList=require('../controller/user/orderList')
 const wishlist=require('../controller/user/wishList')
 const user_management=require('../controller/admin/userManagement')
 const orders=require('../controller/admin/orders')
@@ -104,6 +104,7 @@ router.post('/admin/product/add_product',upload.array('image'),product.addProduc
 
 router.put('/admin/update_category',category.updateCategory)
 router.put('/admin/product/edit',product.update_product)
+router.put('/admin/status',orders.change_status)
 
 router.delete('/admin/category/delete',category.deleteCategory)
 router.delete('/admin/category/delete_subcategory',category.deleteSubCategory)
@@ -114,35 +115,60 @@ router.patch('/admin/user_action',user_management.block_unblock_user)
 
 
 //USER
-router.get('/user',userMidleWare.requireUserAuth,userHome.userHome)
-router.get('/logout', userAccount.userLogout)
+
 router.get('/search',userMidleWare.requireUserAuth,userHome.getPrdctBySearch)
 router.get('/filter',userMidleWare.requireUserAuth,userHome.prdctFilter)  
 router.get('/sort',userMidleWare.requireUserAuth,product_shoping.product_sort)
 router.get('/product_details',userMidleWare.requireUserAuth,product_shoping.product_details)
-router.get('/viewcart',userMidleWare.requireUserAuth,product_shoping.show_cart)
-router.get('/cart_qty',userMidleWare.requireUserAuth,product_shoping.change_qty)
-router.get('/address',userMidleWare.requireUserAuth,userProfile.showAddress)
-router.get('/profile',userMidleWare.requireUserAuth,userProfile.showProfile)
+ 
+
+
+
+
+
+
+//user auth
+router.post('/signup',userAccount.userRegistration)
+router.post('/login',userAccount.userlogin)
+router.get('/logout', userAccount.userLogout)
+
+//home page
+router.get('/user',userMidleWare.requireUserAuth,userHome.userHome)
+
+// forgot pasword
+router.get('/forgot_password',userAccount.forgot_page)
+router.get('/reset-password',userAccount.reset_page)
+router.post('/forgot_password',userAccount.token_send)
+router.post('/reset-password',userAccount.pass_reset)
+
+//show orders, cancell orders...etc
+router.get('/myorders',orderList.get_all_orders)
+router.get('/return',orderList.return_order)
+router.delete('/myorders/cancelorder',orderList.cancel_order)
+
+//wishlist
+router.get('/wishlist',wishlist.get_wishlist)
+router.put('/wishlist',wishlist.add_wishlist)
+router.delete('/wishlist/remove_allitem',wishlist.dlt_wishlist_single_item)
+router.delete('/wishlist/removeitem',wishlist.clear_wishlist)
+
+//checkout
 router.get('/checkout-address',checkout.checkout_adress)
 router.get('/checkout-address-save',checkout.save_address)
 router.get('/checkout-payment',checkout.checkout_payment)
 router.get('/checkout-review',nocache(),checkout.checkout_review)
 router.get('/checkout-complete',checkout.checkout_complete)
-router.get('/myorders',orders_and_wishlist.get_all_orders)
-router.get('/wishlist',wishlist.get_wishlist)
-router.get('/return',orders_and_wishlist.return_order)
 
+//user profile
+router.get('/address',userMidleWare.requireUserAuth,userProfile.showAddress)
+router.get('/profile',userMidleWare.requireUserAuth,userProfile.showProfile)
 router.post('/add_address',userProfile.createAddress)
-router.post('/signup',userAccount.userRegistration)
-router.post('/login',userAccount.userlogin)
 
-router.put('/wishlist',wishlist.add_wishlist)
-
+//cart
+router.get('/viewcart',userMidleWare.requireUserAuth,product_shoping.show_cart)
+router.get('/cart_qty',userMidleWare.requireUserAuth,product_shoping.change_qty)
 router.delete('/viewcart/remove_cart',product_shoping.remove_item)
-router.delete('/myorders/cancelorder',orders_and_wishlist.cancel_order)
-router.delete('/wishlist/remove_allitem',wishlist.dlt_wishlist_single_item)
-router.delete('/wishlist/removeitem',wishlist.clear_wishlist)
+
 
 const Product=require('../model/product/product')
 const Cart=require('../model/cart/cart')
@@ -153,71 +179,23 @@ const User=require('../model/user/user')
 
 const mongoose = require('mongoose');
 
-router.put('/admin/status',(req,res)=>{
 
-  const {ordId,prdctId,status}=req.body
-  const qty=parseInt(req.body.qty)
-  console.log('qty:'+qty);
-  // console.log('order='+ordId+"product ="+prdctId+"stat ="+status);
-  Order.findById({_id:ordId}).then(ord_data=>{
 
-    if(status==='refund-approved'){
-      
-      Product.findById({_id:prdctId}).then(data=>{
-        const changd_qty=data.quantity+qty
-        data.quantity=changd_qty
-        return data.save()
-      }).then(data=>{
-        change_stat()
-      }).catch(err=>{
-        console.log(err)
-      })
-    }else{
-      change_stat()
-    }
-    function change_stat(){
-      const prdct=ord_data.items.find(prdct_data=>prdct_data.item._id==prdctId)
-    prdct.status=status
-    ord_data.markModified('items')
-    ord_data.save().then(data=>{
-      res.json({message:'Status changed'})
+const nodemailer=require('../controller/nodemailer')
 
-    }).catch(err=>{
-      console.log(err);
-      res.json({message:'Somthing went wrong'})
 
-    })
-    }
-
-  }).catch(err=>{
-    console.log(err);
-    res.json({message:'Somthing went wrong'})
-
-  })
-})
+ 
 
 
 
-// const random_string=require('randomstring')
 
-// router.get('/forgot_password',(req,res)=>{
 
-//   res.render('forgetPassword')
-// })
+ 
+   
+   
 
-// router.post('/forgot_password',(req,res)=>{
-
-//   const email=req.body.email
-//   User.findOne({email:email}).then(user_data=>{
-//     if(user_data){
-
-//       const randomString=random_string.generate()
-//     }else{
-//       res.render('forgetPassword',({message:'Email Id is incorect'}))
-//     }
-//   })
-//   res.send(email)
-// })
+  
+ 
 
 
 

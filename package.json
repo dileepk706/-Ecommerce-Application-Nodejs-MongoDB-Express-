@@ -23,6 +23,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nocache": "^3.0.4",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "randomstring": "^1.2.3",
     "twilio": "^4.8.0"

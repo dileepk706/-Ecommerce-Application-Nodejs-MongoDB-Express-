@@ -42,9 +42,10 @@ exports.getPrdctBySearch=(req,res)=>{
   CATEGORY.findOne( {name: { $regex: regex } }).populate('subcategories.products').then(p_products=>{
     if(p_products){
       // res.send(p_products)
+      
      const  SubCatproducts=null
      const products=null
-       res.render('shoping_page',{maxPrice,minPrice,p_products,SubCatproducts,products,error})
+       res.render('shoping_page',{maxPrice,minPrice,p_products,SubCatproducts,products,error,totalPage:null})
       return
     }
      CATEGORY.find().populate('subcategories.products').then(s_products=>{
@@ -55,7 +56,7 @@ exports.getPrdctBySearch=(req,res)=>{
         if(SubCatproducts){
           //  res.send(SubCatproducts) 
           const products=null
-           res.render('shoping_page',{maxPrice,minPrice,p_products,SubCatproducts,products,error})
+           res.render('shoping_page',{maxPrice,minPrice,p_products,SubCatproducts,products,error,totalPage:null})
            return
           break;
         }

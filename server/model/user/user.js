@@ -70,7 +70,13 @@ const  userShema = new Schema({
       required: true,
       ref: 'product'
     }
-  ]
+  ],
+resetPasswordToken:{
+  type:String
+},
+resetPasswordExpires:{
+  type:Date
+}
 },{timestamps : true});
  
 module.exports = mongoose.model('user', userShema);

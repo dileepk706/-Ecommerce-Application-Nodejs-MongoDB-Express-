@@ -1,26 +1,26 @@
-const USER = require('../../model/user/user')
-const CART = require('../../model/cart/cart');
+const User = require('../../model/user/user')
+const Cart = require('../../model/cart/cart');
 const bcrypt = require('bcrypt');
-
+const random_string=require('randomstring')
 
 
 exports.userRegistration= (req,res)=>{
     const { name,email,phone,password}=req.body
-    USER.findOne({email:email}).then(foundUser=>{
+    User.findOne({email:email}).then(foundUser=>{
       if(foundUser){
         res.status(301).send({message:'the E-mail was already registerd'})
       }else{
      
         
        bcrypt.hash(password, 10).then(hashPassword=>{
-        const user= new USER({
+        const user= new User({
             name:name,
             email:email,  
             phone:phone,
             password:hashPassword,
             wishlist:[]
           })
-        const cart= new CART({
+        const cart= new Cart({
           user_id:user._id,
           total_amount:0,
           product:[]
@@ -41,7 +41,7 @@ exports.userRegistration= (req,res)=>{
 exports.userlogin=(req,res)=>{
   const {email,password}=req.body;
   // console.log(email+' '+password);
-  USER.findOne({email:email}).then(userData=>{
+  User.findOne({email:email}).then(userData=>{
     if(!userData){
       return res.status(300).json({message:'the user does not exist'})
       // return res.render('UserLoginPage',{message:'you dont have Account in shopSmart... please create a Account first',passwordError:null})
@@ -75,7 +75,68 @@ exports.userLogout=(req,res)=>{
   }
 }
 
+exports.forgot_page=(req,res)=>{
+  res.render('forgetPassword',{message:null})
+}
 
+exports.token_send=async (req,res)=>{
+
+  const email=req.body.email
+  console.log(email);
+  
+  // Send the password reset email to the user's email address
+  try {
+
+    const user= await User.findOne({email:email});
+    if(!user){
+      res.render('forgetPassword',{message:'User not found'})
+    }
+    const token=random_string.generate()
+    user.resetPasswordToken =token
+    user.resetPasswordExpires = Date.now() + 90000;
+    await user.save()
+
+    const mailOptions = {
+      from: 'dlpkmr706@gmail.com',
+      to: email,
+      subject: 'Password reset request',
+      text:`Hi ${user.email},\n\nYou are receiving this email because you (or someone else) has requested a password reset for your account.\n\nPlease click on the following link, or paste it into your browser to complete the process:\n\nhttp://localhost:3000/reset-password?token=${token}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.\n\nBest,\nYour App Team`,
+    };
+    await  nodemailer.transporter.sendMail(mailOptions)
+
+    return res.render('forgetPassword',{ message: `Password reset email sented at ${email}` });
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+exports.reset_page=async (req,res)=>{
+  const token=req.query.token
+  const user= await User.findOne({resetPasswordToken:token,resetPasswordExpires: { $gt: new Date() }},{resetPasswordToken:1,resetPasswordExpires:1})
+  
+  res.render('passwordreset',{message:null,token})
+
+}
+
+exports.pass_reset=async (req,res)=>{
+  const {token,password}=req.body;
+  console.log(token+' here '+password);
+  const user= await User.findOne({resetPasswordToken:token,resetPasswordExpires: { $gt: new Date() }},{resetPasswordToken:1,resetPasswordExpires:1})
+  if(!user){
+    res.render('passwordreset',{token,message:'Invalid or expired token'})
+    return
+ }
+      
+ const hash_password= await bcrypt.hash(password, 10) 
+ user.password=hash_password
+ user.resetPasswordExpires=null
+ user.resetPasswordToken=null
+ await user.save()
+ res.render('passwordreset',{token,message:'New password created successfully'})
+ return 
+}
 // const ADMIN=require('../../model/admin/admin')
 
 // exports.adminRegistration= (req,res)=>{
