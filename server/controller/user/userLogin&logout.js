@@ -2,6 +2,7 @@ const User = require('../../model/user/user')
 const Cart = require('../../model/cart/cart');
 const bcrypt = require('bcrypt');
 const random_string=require('randomstring')
+const nodemailer=require('../../controller/nodemailer')
 
 
 exports.userRegistration= (req,res)=>{
@@ -82,7 +83,6 @@ exports.forgot_page=(req,res)=>{
 exports.token_send=async (req,res)=>{
 
   const email=req.body.email
-  console.log(email);
   
   // Send the password reset email to the user's email address
   try {
@@ -100,7 +100,7 @@ exports.token_send=async (req,res)=>{
       from: 'dlpkmr706@gmail.com',
       to: email,
       subject: 'Password reset request',
-      text:`Hi ${user.email},\n\nYou are receiving this email because you (or someone else) has requested a password reset for your account.\n\nPlease click on the following link, or paste it into your browser to complete the process:\n\nhttp://localhost:3000/reset-password?token=${token}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.\n\nBest,\nYour App Team`,
+      text:`Hi ${user.name},\n\nYou are receiving this email because you (or someone else) has requested a password reset for your account.\n\nPlease click on the following link, or paste it into your browser to complete the process:\n\nhttp://localhost:3000/reset-password?token=${token}\n\nIf you did not request this, please ignore this email and your password will remain unchanged.\n\nBest,\nYour shopSMART Team`,
     };
     await  nodemailer.transporter.sendMail(mailOptions)
 

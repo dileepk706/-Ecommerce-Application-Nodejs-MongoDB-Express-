@@ -2,9 +2,11 @@ const Brand = require('../../model/brand/brand')
 
 exports.addBrand=(req,res)=>{
     const brndName=req.body.name
+    const catName=req.body.catName
     const image = req.file.filename
     const brand = new Brand({
         name:brndName,
+        category_name:catName,
         image:image,
         products:[]
     })

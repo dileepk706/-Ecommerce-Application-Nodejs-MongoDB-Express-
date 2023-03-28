@@ -1,5 +1,6 @@
 const axios=require('axios');
 const { response } = require('express');
+const Category=require('../../model/category/category')
 
 exports.categoryPagerender= async(req,res)=>{
     try {
@@ -57,7 +58,8 @@ exports.addBrand=async(req,res)=>{
             return res.send('somthing went wrong')
         }
         const brand=responce.data.brand
-        return res.render('adminAddBrand',{brand})
+        const categories=await Category.find()
+        return res.render('adminAddBrand',{brand,categories})
     } catch (error) {
         res.send(error)
     }

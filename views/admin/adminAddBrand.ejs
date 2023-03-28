@@ -15,6 +15,17 @@
                         <label for="name">Brand Name:</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter brand name" required>
                     </div>
+                    <select class="form-control" id="category" name="catName" required>
+                        <option value="" selected disabled>Select Sub_category</option>
+                        
+                        <% categories.forEach(category => { %>
+                            <% category.subcategories.forEach(subcategry => { %>
+                                <option value="<%= subcategry.name %>"><%= subcategry.name %></option> 
+                                <% }) %>
+                            <% }) %>
+                         
+                    </select>
+                    
                     <div class="form-group">
                         <label for="image">Images:</label>
                         <input type="file" class="form-control-file" id="image" name="image" required>

@@ -52,11 +52,11 @@ margin-bottom: 20px;
 }
 .box1{
     
-    background:url(//https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D100061614076166&imgrefurl=https%3A%2F%2Fm.facebook.com%2Famarkartbd%2F&tbnid=ie_aNfPWBtGn3M&vet=12ahUKEwiLgOzKh779AhUP3nMBHX33BQIQMygBegQIARAm..i&docid=0RIaSvrs1Wfl0M&w=500&h=500&q=amarkart&ved=2ahUKEwiLgOzKh779AhUP3nMBHX33BQIQMygBegQIARAm);
+    /* background:url(//https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D100061614076166&imgrefurl=https%3A%2F%2Fm.facebook.com%2Famarkartbd%2F&tbnid=ie_aNfPWBtGn3M&vet=12ahUKEwiLgOzKh779AhUP3nMBHX33BQIQMygBegQIARAm..i&docid=0RIaSvrs1Wfl0M&w=500&h=500&q=amarkart&ved=2ahUKEwiLgOzKh779AhUP3nMBHX33BQIQMygBegQIARAm);
     height: 100vh;
     background-position:center;
     background-repeat: no-repeat;
-   background-color:#2874f0;
+   background-color:#2874f0; */
 }
 .box2 .user-id{
     position: relative;

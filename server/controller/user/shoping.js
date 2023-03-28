@@ -113,14 +113,15 @@ exports.show_cart=(req,res)=>{
         
         //if the  product not foud push the product details into the product array 
         if(!foundPrdctId){
-    
+          const qty=productData.quantity<=0?0:1
+          const productPrice=qty>=1?productData.price:0
           const newItem={
             item:productData._id,
-            quantity:1,
-            sub_total:productData.price
+            quantity:qty,
+            sub_total:productPrice
           }
     
-          cartData.total_amount += productData.price
+          cartData.total_amount += productPrice
           cartData.product.push(newItem )
     
           cartData.save().then(response=>{
@@ -149,7 +150,7 @@ exports.change_qty=(req,res)=>{
     const prdctId=req.query.prdctId
     const val=parseInt(req.query.val)
     const user_id=req.session.user
-    // console.log( prdctId,val,req.query.price);
+    const productQty=req.query.productQty
   
      
       //f/ind the cart
@@ -163,11 +164,10 @@ exports.change_qty=(req,res)=>{
             break;
           }
         }
-        let qty=foundProduct.quantity+val
-        if(qty<1){
-          qty=1
-        }
-        
+
+
+        let qty=foundProduct.quantity+val<1?1:foundProduct.quantity+val
+        qty= qty>=productQty?productQty:qty
         const prodctPrice=req.query.price
         const sub_total=qty*prodctPrice
   

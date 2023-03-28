@@ -19,42 +19,31 @@
     <link rel="stylesheet" href="/public/css/login_page_style.css" />
   </head>
   <body>
-    <!-- <div class="container"> -->
+    <div class="container">
       <div class="box">
         <div class="row">
-          <div class="col-sm-5 col-xs-1 box1">
-            <div class="inline-text">
-              <h1>Login</h1>
-              <p>
-                Get access to your Orders,<br />
-                Wishlist and<br />
-                Recomadations
-              </p>
-              <h4 class="mt-5">ShopSmart</h4>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xs-1 box2"> 
+          
+          <div class="col-sm-6 col-xs-12 box2"> 
             
             <div class="popup-message"></div>
-                <div class="user-id user-data">
-                    <input type="email " name="email" id="typeEmail" required="enter the e-mail"/>
-                    <label>Enter Email/Mobile Number</label>
-                  </div>
-                  <div class="user-id user-data">
-                    <input type="password" class="form-control" name="password" id="password" required=""/>
-                    <label>Enter the password</label>
-                  </div>
-                      <span><a href="/forgot_password">Forgot?</span></a>
-                  <div class="user-id button">
-                    <input onclick="addCatbtn()"  type="submit" name="" id="btn" value="Login" />
-                  </div>
-          
-
-            <div class="user-id">
-            <p>OR</p>
-        </div>
+            <div class="user-id user-data form-group">
+              <input type="email" class="form-control" name="email" id="typeEmail" required placeholder="Enter Email/Mobile Number"/>
+            </div>
+            <div class="user-id user-data form-group">
+              <input type="password" class="form-control" name="password" id="password" required placeholder="Enter the password"/>
+            </div>
+            <div class="form-group">
+              <span><a href="/forgot_password">Forgot?</a></span>
+            </div>
             <div class="user-id button">
-              <a href="/twilio-sms/Request_OTP"><input type="reset" name="" id="" value="Request OTP" /></a>
+              <input onclick="addCatbtn()"  type="submit" name="" id="btn" value="Login" class="btn btn-primary"/>
+            </div>
+            
+            <div class="user-id form-group">
+              <p>OR</p>
+            </div>
+            <div class="user-id button">
+              <a href="/twilio-sms/Request_OTP"><input type="reset" name="" id="" value="Request OTP" class="btn btn-secondary"/></a>
             </div>
             <div class="user-id">
               <%= message %>
@@ -64,6 +53,7 @@
         </div>
       </div>
     </div>
+    
 
 
 

@@ -12,7 +12,7 @@
       <% }else { %>
         <% categories.forEach(product => { %>
           <div class="category-col">
-            <a href="category?name=<%= product.name %>"><img src="/public/uploads/<%= product.image%>" alt=""></a>
+            <a href="/search?category=<%= product.name %>"><img src="/public/uploads/<%= product.image%>" alt=""></a>
               <h5><%= product.name %></h5>
           </div>
           <% }) %>

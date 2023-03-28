@@ -116,7 +116,7 @@ router.patch('/admin/user_action',user_management.block_unblock_user)
 
 //USER
 
-router.get('/search',userMidleWare.requireUserAuth,userHome.getPrdctBySearch)
+router.get('/search',userHome.getPrdctBySearch)
 router.get('/filter',userMidleWare.requireUserAuth,userHome.prdctFilter)  
 router.get('/sort',userMidleWare.requireUserAuth,product_shoping.product_sort)
 router.get('/product_details',userMidleWare.requireUserAuth,product_shoping.product_details)
@@ -181,7 +181,6 @@ const mongoose = require('mongoose');
 
 
 
-const nodemailer=require('../controller/nodemailer')
 
 
  

@@ -16,7 +16,9 @@ exports.addProduct= (req,res)=>{
       price:price,
       image:images,
       description:description,
-      brand_name:brand_name
+      brand_name:brand_name,
+      category:pname,
+      subcategory:sname
   })
   Product.findOne({name:name}).then((foundPrdct=>{
       if(foundPrdct){

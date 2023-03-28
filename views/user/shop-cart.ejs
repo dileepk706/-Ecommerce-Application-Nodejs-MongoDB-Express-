@@ -92,9 +92,9 @@
                                         <td class="product-quantity">
                                             <!-- <input type="text" name="q1" /> -->
                                             <!-- <button class="btn-primary mr-3">+</button><input type="text" name="q1" /><button>-</button> -->
-                                            <button onclick="qty('<%= prdct.item._id %>','<%= prdct.item.price %>',-1, this.parentNode.querySelector('.quantity-input'), this.parentNode.nextElementSibling)" class="btn btn-primary quantity-btn minus-btn">-</button>
+                                            <button onclick="qty('<%= prdct.item._id %>','<%= prdct.item.price %>',-1,'<%= prdct.item.quantity %>', this.parentNode.querySelector('.quantity-input'), this.parentNode.nextElementSibling)" class="btn btn-primary quantity-btn minus-btn">-</button>
                                             <input type="text" name="q1" class="quantity-input" value="<%= prdct.quantity %>" readonly>
-                                            <button onclick="qty('<%= prdct.item._id %>','<%= prdct.item.price %>',1, this.parentNode.querySelector('.quantity-input'), this.parentNode.nextElementSibling)" class="btn btn-primary quantity-btn plus-btn">+</button>
+                                            <button onclick="qty('<%= prdct.item._id %>','<%= prdct.item.price %>',1,'<%= prdct.item.quantity %>', this.parentNode.querySelector('.quantity-input'), this.parentNode.nextElementSibling)" class="btn btn-primary quantity-btn plus-btn">+</button>
                                         </td>
 
                             
@@ -107,7 +107,7 @@
                                     
                                     <% }) %>
                                 <%}else{%>
-                                    <h2 style="color: red;">No items in your Cart....Please add items</h2>
+                                    <h2 style="color: red;">Your cart is empty/h2>
                                     <%}%>
                                  
                             </tbody>
@@ -116,11 +116,7 @@
                     <!-- end product table -->
 
                     <!-- button set -->
-                    <div class="col-12 border-bottom py-1-9 py-lg-2-3 mb-3 mb-md-4 mb-lg-0">
-                        <!-- <button class="butn-style2 small bg-color mb-2 mb-md-0"><span>Empty Cart</span></button> -->
-                        <button class="butn-style2 small bg-color float-end ms-2 mb-2 mb-md-0"><span>Continue Shopping</span></button>
-                        <!-- <button class="butn-style2 small bg-color float-end ms-2"><span>Update Shopping Cart</span></button> -->
-                    </div>
+                   
                     <!-- end button set -->
 
                     <!-- total block set -->
@@ -522,7 +518,7 @@
                 confirmButtonText: 'Yes, remove it!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  fetch(`http://localhost:3000/viewcart/remove_cart?id=${pdct_id}`,{
+                  fetch(`/viewcart/remove_cart?id=${pdct_id}`,{
                     method:'DELETE',
                   }).then(response=>response.json()).then(data=>{
                     window.location.href='/viewcart'
@@ -535,9 +531,9 @@
 
 
 
-           function qty(id, price, q, input, subtotal) {
+           function qty(id, price, q, prdctQty,input, subtotal) {
             console.log(id, q, price);
-            fetch(`http://localhost:3000/cart_qty?prdctId=${id}&&val=${q}&&price=${price}`, {
+            fetch(`/cart_qty?prdctId=${id}&&val=${q}&&price=${price}&&productQty=${prdctQty}`, {
                 method: 'GET',
             }).then(response => response.json()).then(data => {
                 console.log(data);

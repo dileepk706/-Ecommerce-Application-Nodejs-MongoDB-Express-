@@ -30,10 +30,13 @@ const productSchema = new Schema({
     type: String,
     trim:true
   }, 
-  // category: {
-  //   type: String,
+  category: {
+    type: String,
 
-  // },
+  },
+  subcategory:{
+    type:String
+  },
   created_by: [{
     type: Schema.Types.ObjectId,
     required: true,
