@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from smartshop.websitelayout.net/shop-product-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Jan 2023 15:58:47 GMT -->
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
+    <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
+
+    <!-- title  -->
+    <title>shopSmart</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/public/img/logos/favicon.png">
+    <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/public/img/logos/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/public/img/logos/apple-touch-icon-114x114.png">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="/public/css/plugins.css">
+
+    <!-- theme core css -->
+    <link href="/public/css/product_styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+ 
+        
+    <%- include('include/_header')%> 
+        
+    <div id="preloader"></div>
+
+    <!-- MAIN WRAPPER
+    ================================================== -->
+    <div class="main-wrapper mp-pusher" id="mp-pusher">
+
+
+         
+
+        <!-- CATEGORY
+        ================================================== -->
+        <section class="cat-separet" style="padding: 0;">
+            <div class="container">
+                
+                <div class="row mt-n1-9 text-center">
+                    <% if (categories==null) { %>
+                        <p>No category available</p>
+                        <% }else { %>
+                          <% categories.forEach(product => { %>
+                            <div class="col-sm-6 col-md-4 col-lg-2 mt-1-9">
+                                <a href="/search?superCategory=<%= product.name %>" class="categoty-style2">
+                                    <div class="  mb-4">
+                                        <img style="width: 30%;height: auto;vertical-align: top;" class="show_category" src="/public/uploads/<%= product.image%>" alt="...">
+                                    </div>
+                                    <h3 class="font-weight-500 mb-0"><%= product.name %></h3>
+                                </a>
+                            </div>
+                             
+                            <% }) %>
+                        <% } %>
+                    
+                     
+                </div>
+            </div>
+        </section>
+
+
+        <section style="padding: 0px;" class="cat-separet mt-3" >
+            <div class="container">
+                <div class="text-center mb-1-9 mb-lg-2-3">
+                    <h2 class="mb-0">Best Battery Phones</h2>
+                </div>
+                <div class="row mt-n1-9">
+                    <% if (mobiles==null) { %>
+                        <p>No products available</p>
+                        <% }else { %>
+                      <% mobiles.forEach(product => { %>
+                        <div class="col-sm-6 col-lg-3 mt-1-9" style="width: 20%;">
+                            <div class="product-grid-four">
+                                <div class="product-img">
+                                    <a href="/search?category=mobiles"><img src="/public/uploads/<%= product.image[0]%>" alt="..."></a>
+                                    <div class="action-butn">
+                                         
+                                    </div>
+                                </div>
+                                <h3 class="h6"><a href="shop-product-detail.html"><%= product.name%></a></h3>
+                                <span class="font-weight-600 display-29 text-muted">₹ <%= product.price%></span>
+                            </div>
+                        </div>
+                        <%})%>
+                            <% } %>
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 0px;" class="mt-5" class="cat-separet" >
+            <div class="container">
+                <div class="text-center mb-1-9 mb-lg-2-3" ">
+                    <h2 class="mb-0">Best collections in  iphone</h2>
+                </div>
+                <div class="row mt-n1-9">
+                    <% if (headphones==null) { %>
+                        <p>No products available</p>
+                        <% }else { %>
+                      <% headphones.forEach(product => { %>
+                        <div class="col-sm-6 col-lg-3 mt-1-9 " style="width: 20%;">
+                            <div class="product-grid-four">
+                                <div class="product-img">
+                                    <a href="/search?category=mobiles"><img src="/public/uploads/<%= product.image[0]%>" alt="..."></a>
+                                    <div class="action-butn">
+                                         
+                                    </div>
+                                </div>
+                                <h3 class="h6"><a href="shop-product-detail.html"><%= product.name%></a></h3>
+                                <span class="font-weight-600 display-29 text-muted">₹ <%= product.price%></span>
+                            </div>
+                        </div>
+                        <%})%>
+                            <% } %>
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+         
+        <!-- banner -->
+
+        <section class="md">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-9 mx-auto">
+
+                        <div class="position-relative elements-block">
+
+                            
+
+                            <div class="owl-carousel owl-theme text-center">
+                                <%banner.forEach((bannerData)=>{%>
+                                <div class="item">
+                                    <div class="offer-style02">
+                                    <img style=" height: auto;width: 100%;" src="/public/uploads/<%=bannerData.image%>" alt="...">
+                                    
+                                    <div class="text-center position-absolute top-10 start-0 end-0">
+                                        <span class="text-uppercase font-weight-600 text-white letter-spacing-2 d-block mb-2 mb-sm-3"><%= bannerData.subTitle %></span>
+                                        <h2 class="h1 mb-2 text-white"><%=bannerData.name%></h2>
+                                        <p class="text-white font-weight-600 display-29 d-none d-sm-block"><%= bannerData.description %></p>
+                                        <a href="/search?category=<%=bannerData.category_name%>" class="butn-style4 sm">Shop Now<span></span></a>
+                                    </div>
+                                    </div>
+                                </div>
+                              
+                            <%})%>
+                            
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        
+         
+
+      
+ 
+
+        <!-- FOOTER
+        ================================================== -->
+        <footer class="pb-0 pt-6 pt-md-10 pt-lg-13 classic-footer">
+            <div class="container">
+                 
+                <div class="row align-items-center border-top py-1-9">
+                    <div class="col-md-5 col-lg-4 col-xl-3 mb-4 mb-lg-0 text-center text-md-start">
+                         
+                    </div>
+                    <div class="col-md-7 col-lg-5 col-xl-6 text-center text-md-end text-lg-center mb-4 mb-lg-0">
+                        <p class="mb-0 font-weight-600">&copy; <span class="current-year"></span> Smartshop is Powered by <a href="https://github.com/dileepk706" target="_blank">Dileep kumar</a></p>
+                    </div>
+                    <div class="col-lg-3 text-center text-lg-end">
+                        <ul class="social-icon-style2 mb-0 ps-0">
+                            <li>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </footer>
+
+    </div>  
+
+
+
+    <a href="#" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+
+    <!-- all js include start -->
+
+    
+    
+    <%- include('include/_footer')%>

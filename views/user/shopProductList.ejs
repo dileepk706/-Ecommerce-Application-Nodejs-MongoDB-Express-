@@ -1,16 +1,18 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-    <!-- metas -->
-    <meta charset="utf-8">
-    <meta name="author" content="Chitrakoot Web" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="keywords" content="Multipurpose eCommerce Template + Admin" />
-    <meta name="description" content="Smartshop - Multipurpose eCommerce Template + Admin" />
-
-    <!-- title  -->
-    <title>shopSmart</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSmart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="/public/css/style.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font awsome icon/css/all.css">
+    <link rel="stylesheet" href="font style/Roboto-MediumItalic.ttf">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="/public/img/logos/favicon.png">
     <link rel="apple-touch-icon" href="/public/img/logos/apple-touch-icon-57x57.png">
@@ -22,25 +24,103 @@
 
     <!-- theme core css -->
     <link href="/public/css/product_styles.css" rel="stylesheet">
-    
-        <!-- Include SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
 
-    <!-- Include SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.all.min.js"></script>
-
-
+    <!-- //sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link> 
 </head>
+<body>
 
 
-<%- include('include/_header')%>
+  <header style="background: #2874f0;" class="menu_area-light header-light-nav header-02">
+
+    <div class="navbar-default">
+
+        <!-- top search -->
+        <div class="top-search bg-primary">
+            <div class="container-fluid">
+                <form class="search-form" >
+                    <div class="input-group">
+                        <span class="input-group-addon cursor-pointer">
+                           
+                            <button class="search-form_submit fas fa-search display-27 text-white" type="submit"></button>
+                        </span>
+                        <input type="text" class="search-form_input form-control" name="search" value="<%=search%>" autocomplete="off" placeholder="Type & hit enter...">
+                        <span class="input-group-addon close-search"><i class="fas fa-times display-27 mt-2"></i></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end top search -->
+
+        <div class="container">
+            <div class="row align-items-center g-0">
+                <div class="col-12 col-lg-12">
+                    <div class="menu_area alt-font">
+                        <nav class="navbar navbar-expand-lg navbar-light p-0">
+
+                            <div class="navbar-header navbar-header-custom">
+                                <!-- logo -->
+                                <!-- <a href="home-shop-1.html" class="navbar-brand logodefault"><img id="logo" src="img/logos/logo-color3.png" alt="logo"></a> -->
+                                <h3>shopSmart</h3>
+                                <!-- end logo -->
+                            </div>
+
+                            <!-- menu toggler -->
+                            <div class="navbar-toggler"></div>
+                            <!-- end menu toggler -->
+
+                            <!-- menu area -->
+                            <ul class="navbar-nav mx-auto" id="nav" style="display: none;">
+                                <li><a href="/profile">Profile <i class="fas fa-user-circle fa-lg"></i></a>
+                                <li><a href="/viewcart">Cart<i class="fas fa-shopping-cart"></i></a></li>
+                                <li><a href="/wishlist">Wishlist<i class="fas fa-heart"></i></a></li>
+                                <li><a href="/myorders">Orders<i class="fas fa-clipboard-list"></i></a></li>
+                                
+                                   
+                                 
+                            </ul>
+                            <!-- end menu area -->
+
+                            <!-- attribute navigation -->
+                            <div class="attr-nav">
+                                <ul>
+ 
+                                    <li class="search"><a href="#"><i class="fas fa-search"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- end attribute navigation -->
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
 
 <!-- PRODUCT LIST
         ================================================== -->
-        <section class="md">
+        <section class="md ">
             <div class="container">
                 <div class="row">
 
@@ -54,11 +134,19 @@
                                  
                                 <div class="card">
                                     <div class="card-header" id="headingFive">
-                                        <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                      Mobile
-                                    </button>
-                                  </h5>
+                                        <ul class="list-group">
+                                            <%if(products.length>0){%>
+                                           <a class="list font-weight-bold text-primary" href=""><%=foundCategory.name%></a>
+                                           <%foundCategory.subcategories.forEach(subCat=>{%>
+                                               <%if(subCat.name==category){%>
+                                                   <a href="?category=<%=subCat.name%>"><li class="list" style="color: darkblue;"><%=subCat.name%></li></a>
+                                                   <%}else{%>
+                                                   <a href="?category=<%=subCat.name%>"><li class="list"><%=subCat.name%></li></a>
+                                                       <%}%>
+                                               <%})%>
+           
+                                                   <%}%>
+                                         </ul>
                                     </div>
                                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordion">
                                         <div class="card-body">
@@ -73,15 +161,46 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="widget">
                             <div class="widget-title">
                                 <h5>Price Range</h5>
                             </div>
-                            <input type="text" class="price-range" name="my_range" value="">
-                            <a href="#" class="butn-style2 small mt-1-9">Filter</a>
+                            <form >
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <input class="form-control" name="maxPrice" type="number" value="<%=maxPrice%>"  placeholder="Price above">
+                                    <button class="btn btn-success" type="submit" value="maxPrice">Check</button> 
+                                </div>
+                            </form>
+                            <form >
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <input class="form-control" name="minPrice" type="number" value="<%=minPrice%>"   placeholder="Price below">
+                                    <button class="btn btn-success" type="submit" value="minPrice">Check</button> 
+                                </div>
+                            </form>
                         </div>
+                        <div class="widget">
+                            <div class="widget-title">
+                                <h5>Brands</h5>
+                            </div>
+                        <div class="card-header" id="headingFive">
 
+                        <ul class="list-group">
+                            <%if(products.length>0){%>
+                              
+                                <%foundBrand.forEach(brands=>{%>
+                                    <%if(brands.name==brand){%>
+                                        <a href="?brand=<%=brands.name%>"><li class="list" style="color: darkblue;"><%=brands.name%></li></a>
+                                        <%}else{%>
+                                        <a href="?brand=<%=brands.name%>"><li class="list"><%=brands.name%></li></a>
+                                            <%}%>
+                                    <%})%>
+
+                                        <%}%>
+          
+                          </ul>
+                          </div>
+                        </div>
                     </div>
                     <!-- end sidebar panel -->
 
@@ -96,18 +215,30 @@
 
                                 <div class="row justify-content-center">
  
-
-                                    <div class="col-auto my-1 my-md-0">
-                                        <label class="m-0">Sort By:</label>
-                                        <select class="w-auto d-inline-block form-select">
-                                            <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-                                            <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-                                            <option value="#?sort=p.price&amp;order=ASC" selected="">Price (Low &gt; High)</option>
-                                            <option value="#?sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
-                                            <option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
-                                            <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
-                                             
-                                        </select>
+                                    <div class="col-12 pb-1">
+                                        <div class="d-flex align-items-center justify-content-between mb-4">
+                                            <!-- <form action="">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Search by name">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text bg-transparent text-primary">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </form> -->
+                                            <div class="dropdown ml-4">
+                                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                            Sort by
+                                                        </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                                    <a class="dropdown-item" href="?sort=latest">Latest</a>
+                                                    <a class="dropdown-item" href="?sort=price_desc">price high to low</a>
+                                                    <a class="dropdown-item" href="?sort=price_asc">price low to high</a>
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
 
                                 </div>
@@ -124,7 +255,7 @@
 
                             <div class="col-sm-4">
                                 <div class="product-img">
-                                    <a href="shop-product-detail.html">
+                                    <a href="/product_details?id=<%= product._id%>">
                                         <img src="\public\uploads\<%= product.image[0] %>" alt="..."></a>
                                 </div>
                             </div>
@@ -134,11 +265,11 @@
                                 <div class="product-list">
 
                                     <div class="product-description">
-                                        <h3><a href="shop-product-detail.html"><%= product.name %></a></h3>
+                                        <h3><a href="/product_details?id=<%= product._id%>"><%= product.name %></a></h3>
                                         <h4 class="price">
                                                     <span class="offer-price">₹ <%= product.price %></span>
                                                 </h4>
-                                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
 
                                     <div class="product-buttons">
@@ -161,11 +292,13 @@
                         <div class="pagination text-small text-uppercase text-extra-dark-gray mt-4">
                             <ul class="ps-0">
                                 <!-- <li><a href="#"><i class="fas fa-long-arrow-alt-left me-1 d-none d-sm-inline-block"></i> Prev</a></li> -->
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
+                                <%for(let count = 1; count <= totalPage; count++ ){%>
+                                    <%if(count==currentPage){%>
+                                        <li class="active"><a href="#"><%=count%></a></li>
+                                        <%}else{%>
+                                        <li><a href="?page=<%=count%>"><%=count%></a></li>
+                                            <%}%>
+                                 <%}%>
                                 <!-- <li><a href="#">Next <i class="fas fa-long-arrow-alt-right ms-1 d-none d-sm-inline-block"></i></a></li> -->
                             </ul>
                         </div>
@@ -181,39 +314,31 @@
 
 
 
+        <script>
+            function add_wishlist(prdctId){
+    
+                fetch(`http://localhost:3000/wishlist?prdctId=${prdctId}`,{
+                    method:'PUT'
+                }).then(response=>response.json()).then(data=>{
+                    swal(data.message); 
+                }).catch(err=>{
+                    alert(err.message)
+                })
+            }
+         </script>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-           <!-- SCROLL TO TOP
-    ================================================== -->
-    <a href="#" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
 
-    <!-- all js include start -->
-
-    <!-- jQuery -->
-    <script src="/public/productJs/jquery.min.js"></script>
-
-    <!-- popper js -->
-    <script src="/public/productJs/popper.min.js"></script>
-
-    <!-- bootstrap -->
-    <script src="/public/productJs/bootstrap.min.js"></script>
-
-    <!-- core.min.js -->
-    <script src="/public/productJs/core.min.js"></script>
-
-    <!-- zoom js -->
-    <script src="/public/productJs/xzoom.js"></script>
-
-    <!-- hammer js -->
-    <script src="/public/productJs/jquery.hammer.min.js"></script>
-
-    <!-- setup js -->
-    <script src="/public/productJs/setup.js"></script>
-
-    <!-- custom scripts -->
-    <script src="/public/productJs/main.js"></script>
-
-    <!-- all js include end -->
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+<script src="/public/productJs/jquery.min.js"></script>
 
 
 <%- include('include/_footer')%>

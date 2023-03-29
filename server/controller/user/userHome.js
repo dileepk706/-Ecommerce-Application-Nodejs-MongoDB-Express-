@@ -1,30 +1,18 @@
 const Category=require('../../model/category/category');
 const Product=require('../../model/product/product')
 const Brand=require('../../model/brand/brand')
-
+const Banner=require('../../model/banner/banner')
 exports.userHome=async(req,res)=>{
         const categories= await Category.find({isDeleted:false})
+        const banner=await Banner.find() 
+          
+        const mobiles=await Product.find({isDeleted:false,subcategory:'mobiles'}).limit(5)
+        const headphones=await Product.find({isDeleted:false,brand_name:'Apple'}).limit(5)
 
-      
-        Category.findOne({name:'Electronics'}).populate('subcategories.products').then(data=>{
-            if(!data){
-                res.send('no data')
-                return
-            }else{
-                const mobileCategory=data.subcategories.find(subcategory=>
-                    subcategory.name=='Mobiles' 
-                    )
-                let mobiles=mobileCategory.products.slice(0,7)
-                const headphonesCategory=data.subcategories.find(subcategory=>
-                    subcategory.name=='Headphones'
-                    )
-                let headphones=headphonesCategory.products
-                // res.status(200).send({category,mobiles,headphones})
-                res.render('userHmome', { categories,mobiles,headphones});
-            }
-        }).catch(err=>{
-            res.send(err)
-        })
+        // res.render('userHmome', { categories,mobiles,headphones:null,banner});
+        res.render('new', { categories,mobiles,headphones,banner});
+
+        
 }
 exports.getPrdctBySearch=async (req,res)=>{
 
@@ -39,6 +27,7 @@ exports.getPrdctBySearch=async (req,res)=>{
     req.session.minPrice=null
     req.session.maxPrice=null
     req.session.brand=null
+    req.session.superCategory=null
   }
   if(req.query.category){
     req.session.category=req.query.category
@@ -46,11 +35,21 @@ exports.getPrdctBySearch=async (req,res)=>{
     req.session.minPrice=null
     req.session.maxPrice=null
     req.session.brand=null
+    req.session.superCategory=null
   }
   if(req.query.brand){
     req.session.brand=req.query.brand
     req.session.category=null
     req.session.search=null
+    req.session.minPrice=null
+    req.session.maxPrice=null
+    req.session.superCategory=null
+  }
+  if(req.query.superCategory){
+    req.session.superCategory=req.query.superCategory
+    req.session.category=null
+    req.session.search=null
+    req.session.brand=null
     req.session.minPrice=null
     req.session.maxPrice=null
   }
@@ -81,17 +80,11 @@ exports.getPrdctBySearch=async (req,res)=>{
   const maxPrice=req.session.maxPrice
   const minPrice=req.session.minPrice
   const brand=req.session.brand
+  const superCategory=req.session.superCategory
   console.log('name '+search+'cat ='+category)
 
   const limit=4
-  console.log(page , 
-    search,
-    category,
-    brand, 
-    sortCondition,
-    minPrice,
-    maxPrice);
-
+ 
   
   const searchCondition =search ? { name: { $regex: search, $options: 'i' } } : {};
 
@@ -100,10 +93,10 @@ exports.getPrdctBySearch=async (req,res)=>{
     ...(category?{subcategory:category}:{}),
     ...(brand?{brand_name: brand}:{}),
     ...(minPrice?{price:{$lte:minPrice}}:{}),
-    ...(maxPrice?{price:{$gte:maxPrice}}:{})
+    ...(maxPrice?{price:{$gte:maxPrice}}:{}),
+    ...(superCategory?{category:superCategory}:{})
   }
   console.log(JSON.stringify(filterCondition, null, 2));
-
   const products=await Product.find(filterCondition)
   .skip((page-1)*limit)
   .limit(limit*1)
@@ -118,20 +111,17 @@ exports.getPrdctBySearch=async (req,res)=>{
       break;
     }
   }
-  console.log(subCatName);
   const foundBrand=await Brand.find({category_name:subCatName},{name:1})
-  console.log(foundBrand);
   const foundCategory=await Category.findOne({name:catName})
-  // foundCategory.subcategories.forEach(e=>{
-  //   console.log(foundCategory.name);
-  //   console.log('sub = '+e.name);
-  // })
+ 
   
   const count=await Product.find(filterCondition).countDocuments()
   const totalPage=Math.ceil(count/limit)
   console.log(totalPage,count);
 
-  res.render('shoping_page',{maxPrice,minPrice,products,totalPage,currentPage:page,foundCategory,category,foundBrand,brand})
+  res.render('shopProductList',{maxPrice,minPrice,products,totalPage,currentPage:page,foundCategory,category,foundBrand,brand,search})
+  
+  // res.render('shoping_page',{maxPrice,minPrice,products,totalPage,currentPage:page,foundCategory,category,foundBrand,brand,search})
 
 }
 // exports.getPrdctBySearch=(req,res)=>{

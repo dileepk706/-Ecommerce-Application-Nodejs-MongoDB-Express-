@@ -1,0 +1,81 @@
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+
+ 
+
+    <!-- PAGE INNER
+    ================================================== -->
+    <div class="page-inner">
+
+        <!-- PAGE MAIN WRAPPER
+        ================================================== -->
+        <div id="main-wrapper">
+
+            <!-- row -->
+            <!-- <div class="row">
+                <div class="col-md-12 grid-margin">
+                    <div class="card card-white">
+                        <div class="card-heading clearfix">
+                            <h4 class="card-title">Upload your Banner</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-inline">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" />
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- end row -->
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 grid-margin">
+                    <div class="card card-white">
+                         
+                        <div class="card-body">
+                            <form action="/admin/banner"  method="post"  enctype="multipart/form-data" >
+                                <div class="form-group">
+                                    <label for="exampleInput1">Banner Name</label>
+                                    <input type="text" name="name" class="form-control" id="exampleInput1" aria-describedby="exampleInput1" />
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlSelect1">Category</label>
+                                    <select class="form-select form-control" name="categoryname" id="exampleFormControlSelect1" aria-label="Default select example">
+                                        <% categories.forEach(category => { %>
+                                            <% category.subcategories.forEach(subcategry => { %>
+                                        <option value="<%= subcategry.name %>"><%= subcategry.name %></option>
+                                                <% }) %>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name="image" />
+
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <br>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+
+         
+    </div>
+
+          
+
+ 
+
+<%- include('include/_footer')%>

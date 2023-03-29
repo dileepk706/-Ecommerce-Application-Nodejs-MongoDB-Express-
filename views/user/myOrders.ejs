@@ -62,9 +62,9 @@
                                             <th>Action</th>
 
                                         </tr>
-                                    </thead>
+                                    </thead> 
                                     <tbody>
-                                        <%if(!orders){%>
+                                        <%if(orders.length<=0){%>
                                             <h1 style="color: red;">No orders </h1>
                                             <%}else{%>
                                                 <% orders.forEach(order => { %>
@@ -199,5 +199,5 @@
               
             }
         </script>
-</body>
-</html>
+
+<%- include('include/_footer')%>

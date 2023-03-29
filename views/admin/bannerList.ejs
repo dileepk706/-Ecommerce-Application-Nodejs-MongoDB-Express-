@@ -1,0 +1,128 @@
+
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+<div class="page-inner">
+
+    <!-- PAGE MAIN WRAPPER
+    ================================================== -->
+    <div id="main-wrapper">
+        <!-- row -->
+        <div class="row align-items-center grid-margin">
+            <div class="col-12">
+                <div class="card card-white">
+                    <div class="card-body row align-items-center">
+                        <div class="col-12 col-sm">
+                            <h4 class="mb-4 mb-sm-0 text-center text-sm-start">Category</h4>
+                        </div>
+
+                        <div class="col-12 col-sm-auto">
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-auto my-1 my-md-0">
+                                    <label class="m-0">Show:</label>
+                                    <select class="w-auto d-inline-block form-select">
+                                        <option value="#?limit=24" selected="selected">24</option>
+                                        <option value="#?limit=25">25</option>
+                                        <option value="#?limit=50">50</option>
+                                        <option value="#?limit=75">75</option>
+                                        <option value="#?limit=100">100</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-auto my-1 my-md-0">
+                                    <label class="m-0">Sort By:</label>
+                                    <select class="w-auto d-inline-block form-select">
+                                        <option value="#?sort=p.sort_order&amp;order=ASC">Default</option>
+                                        <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
+                                        <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
+                                        <option value="#?sort=p.price&amp;order=ASC" selected="">Price (Low &gt; High)</option>
+                                        <option value="#?sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
+                                        <option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
+                                        <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
+                                        <option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
+                                        <option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <!-- row -->
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card card-white">
+                    <div class="card-body slimscroll">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr>
+                                     
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%banner.forEach(data=>{%>
+                                    <tr>
+                                        
+                                        <td>1</td>
+                                        <td style="width: 100px;"><img src="/public/uploads/<%=data.image%>" alt="..."></td>
+                                        <td><%=data.name%></td>
+                                        <td><%=data.category_name%></td>
+                                        <td><a class="mr-3" href="/admin/updatebanner/<%=data._id%>">Update</a> <a style="cursor: pointer;" onclick="daleteBanner('<%=data._id%>')"  >Delete</a></td>
+                                    </tr>
+                                     <%})%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+
+    <script>
+        function daleteBanner(id){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes do it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:3000/admin/deletebanner/${id}`,{
+                        method:'GET'
+                    }).then(res=>res.json()).then(data=>{
+                        // swal(data.message)
+                        alert(data.message)
+                        window.location.href='/admin/bannerList'
+                    })
+                }
+              })
+            }
+        
+    </script>
+    <div class="page-footer">
+        <p>Copyright &copy; <span class="current-year"></span> Smartshop All rights reserved.</p>
+    </div>
+</div>
+
+
+ 
+
+<%- include('include/_footer')%>

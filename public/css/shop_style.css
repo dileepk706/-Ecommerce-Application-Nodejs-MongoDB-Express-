@@ -67,6 +67,10 @@ body {
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
+a {
+  color: var(--bs-link-color);
+  text-decoration: underline;
+}
 
 hr {
   box-sizing: content-box;

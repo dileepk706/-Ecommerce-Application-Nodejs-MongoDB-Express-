@@ -54,7 +54,7 @@ const upload = multer({ storage: storage, fileFilter: imageFilter });
 /*****************************************************************************************************/
 
 //user+
-router.get('/',userMidleWare.requireUserAuth,userRender.userhome); 
+// router.get('/',userMidleWare.requireUserAuth,userRender.userhome); 
 router.get('/category',userMidleWare.requireUserAuth,userRender.userCategoryHome)
 router.get('/login',nocache(),userRender.userLogin)
 router.get('/signup',userRender.userSignup)
@@ -133,7 +133,7 @@ router.post('/login',userAccount.userlogin)
 router.get('/logout', userAccount.userLogout)
 
 //home page
-router.get('/user',userMidleWare.requireUserAuth,userHome.userHome)
+router.get('/',userMidleWare.requireUserAuth,userHome.userHome)
 
 // forgot pasword
 router.get('/forgot_password',userAccount.forgot_page)
@@ -177,18 +177,98 @@ const Category=require('../model/category/category')
 const Brand=require('../model/brand/brand')
 const User=require('../model/user/user')
 
-const mongoose = require('mongoose');
+const Banner=require('../model/banner/banner')
 
 
 
+router.get('/addcoupen',(req,res)=>{
+
+  // res.render('coupen')
+  res.render('shopProductList')
+
+})
+
+ router.get('/admin/banner',async (req,res)=>{
+
+  const categories=await Category.find()
+  res.render('bannerForm',{categories})
+ })
 
 
+
+ router.post('/admin/banner',upload.single('image'),async (req,res)=>{
+  
+  try {
+    const {categoryname,name}=req.body
+    const image = req.file.filename
+
+    console.log(categoryname,name,image);
+
+    const banner=new Banner({
+      name:name,
+      category_name:categoryname,
+      image:image
+    })
+
+  await banner.save()
+  res.redirect('/admin/banner')
+
+  } catch (error) {
+    console.log(error);
+  }
+ })
+
+
+
+router.get('/admin/bannerlist',async(req,res)=>{
+
+  try {
+    const banner=await Banner.find()
+  
+    res.render('bannerList',{banner})
+  } catch (error) {
+    console.log(error);
+  }
  
+})
 
+router.get('/admin/updatebanner/:id',async (req,res)=>{
+  try {
+    const banner=await Banner.findById({_id:req.params.id})
+    res.render('updateBanner',{banner})
+  } catch (error) {
+    console.log(error)
+  }
+  
+})
 
+router.post('/admin/updatebanner/:id',async(req,res)=>{
+  
+  try {
+    const {categoryname,name}=req.body
+    console.log(categoryname,name);
+    await Banner.findByIdAndUpdate({_id:req.params.id},{
+      name: name,
+      category_name: categoryname
+    })
+    res.redirect('/admin/bannerlist')
+    return
+  } catch (error) {
+    console.log(error);
+  }
 
+})
 
+router.get('/admin/deletebanner/:id',async (req,res)=>{
+console.log(req.params.id);
 
+ try {
+  await  Banner.findByIdAndDelete({_id:req.params.id})
+  res.status(200).json({message:'Banner deleted'})
+ } catch (error) {
+  console.log(error)
+ }
+})
  
    
    

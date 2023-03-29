@@ -10,6 +10,10 @@ exports.get_all_orders=(req,res)=>{
     }).sort({createdAt:-1})
     .then((orders)=> {
       res.render('myOrders',{orders})
+      orders.forEach(g=>{
+        console.log(g);
+
+      })
     }).catch(err=>{
       console.log(err);
     })
