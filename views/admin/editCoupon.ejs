@@ -1,0 +1,82 @@
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+
+
+     <!-- PAGE INNER
+    ================================================== -->
+    <div class="page-inner">
+
+        <!-- PAGE MAIN WRAPPER
+        ================================================== -->
+        <div id="main-wrapper">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 grid-margin">
+                    <div class="card card-white">
+                        <div class="card-heading clearfix">
+                            <h4 class="card-title">EDIT COUPON</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/admin/couponedit/<%=coupon._id%>" method="post">
+                                <div class="form-group">
+                                    <h4 style="color: red;"><%=message%></h4>
+                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleInput2">Coupan Code</label>
+                                    <input type="text" name="couponCode" value="<%=coupon.couponCode%>" class="form-control" id="exampleInput2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInput2">minimum redeem amount</label>
+                                    <input type="number" value="<%=coupon.minRedeemAmount%>" name="minRedeemAmount" class="form-control" id="exampleInput2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInput1">Minimum cart amount</label>
+                                    <input type="number" value="<%=coupon.minCartAmount%>" name="minCartAmount" class="form-control" id="exampleInput1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInput1">Coupon amount</label>
+                                    <input type="number" value="<%=coupon.couponAmount%>" name="couponAmount" class="form-control" id="exampleInput1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInput3">Quantity</label>
+                                    <input type="number" value="<%=coupon.quantity%>" name="quantity" class="form-control" id="exampleInput3">
+                                </div>
+                                <div class="form-group">
+                                    <label>End Date | previous : <%=coupon.expiryDate%></label>
+                                    <input type="date"  name="expiryDate" class="form-control date-picker">
+                                </div>
+                                <div class="form-group">
+                                    <label for="validationCustom02">Discount Type | previous : <%=coupon.discountType%></label>
+                                    <select class="form-select form-control" name="discountType"  id="validationCustom02" aria-label="Default select example">
+                                        <option   selected>--Select--</option>
+                                        <option value="percent">Percent</option>
+                                        <option value="fixed">Fixed</option>
+                                    </select>
+                                </div>
+                                 
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+             
+            <!-- end row -->
+        </div>
+
+        
+    </div>
+
+     
+
+     
+
+
+
+
+<%- include('include/_footer')%>

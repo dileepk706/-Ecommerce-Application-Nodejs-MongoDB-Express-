@@ -23,6 +23,8 @@ const orderList=require('../controller/user/orderList')
 const wishlist=require('../controller/user/wishList')
 const user_management=require('../controller/admin/userManagement')
 const orders=require('../controller/admin/orders')
+const banner=require('../controller/admin/banner')
+const coupon=require('../controller/admin/coupon')
 
 
 // multerSetup
@@ -113,6 +115,25 @@ router.delete('/admin/products/delete',product.deleteProduct)
 router.patch('/admin/user_action',user_management.block_unblock_user)
 
 
+//Banner managment
+router.get('/admin/banner',banner.bannerFormForCreate)
+router.post('/admin/banner',upload.single('image'),banner.createBanner)
+router.get('/admin/bannerlist',banner.getAllBanner)
+router.get('/admin/updatebanner/:id',banner.getSingleBannerInfo)
+router.post('/admin/updatebanner/:id', banner.updateBanner)
+router.get('/admin/deletebanner/:id',banner.deleteBanner)
+ 
+//coupon management
+router.get('/admin/addcoupons',coupon.couponForm)
+router.post('/admin/addcoupons',coupon.createCoupon)
+router.get('/admin/coupons', coupon.getAllcoupons)
+router.get('/admin/couponedit/:id',coupon.editCouponForm)
+router.post('/admin/couponedit/:id',coupon.editCoupon)
+
+
+
+
+
 
 //USER
 
@@ -178,98 +199,21 @@ const Brand=require('../model/brand/brand')
 const User=require('../model/user/user')
 
 const Banner=require('../model/banner/banner')
+const Coupon=require('../model/coupon/coupon')
 
 
 
-router.get('/addcoupen',(req,res)=>{
 
-  // res.render('coupen')
-  res.render('shopProductList')
-
-})
-
- router.get('/admin/banner',async (req,res)=>{
-
-  const categories=await Category.find()
-  res.render('bannerForm',{categories})
- })
-
-
-
- router.post('/admin/banner',upload.single('image'),async (req,res)=>{
-  
+router.post('/applycoupon',async (req,res)=>{
   try {
-    const {categoryname,name}=req.body
-    const image = req.file.filename
-
-    console.log(categoryname,name,image);
-
-    const banner=new Banner({
-      name:name,
-      category_name:categoryname,
-      image:image
-    })
-
-  await banner.save()
-  res.redirect('/admin/banner')
-
+    const couponCode=req.body.couponCode
+    res.status(200).json({message:couponCode})
   } catch (error) {
-    console.log(error);
-  }
- })
-
-
-
-router.get('/admin/bannerlist',async(req,res)=>{
-
-  try {
-    const banner=await Banner.find()
-  
-    res.render('bannerList',{banner})
-  } catch (error) {
-    console.log(error);
-  }
- 
-})
-
-router.get('/admin/updatebanner/:id',async (req,res)=>{
-  try {
-    const banner=await Banner.findById({_id:req.params.id})
-    res.render('updateBanner',{banner})
-  } catch (error) {
-    console.log(error)
+    res.status(500).json({message:'somthing went wrong'})
   }
   
 })
 
-router.post('/admin/updatebanner/:id',async(req,res)=>{
-  
-  try {
-    const {categoryname,name}=req.body
-    console.log(categoryname,name);
-    await Banner.findByIdAndUpdate({_id:req.params.id},{
-      name: name,
-      category_name: categoryname
-    })
-    res.redirect('/admin/bannerlist')
-    return
-  } catch (error) {
-    console.log(error);
-  }
-
-})
-
-router.get('/admin/deletebanner/:id',async (req,res)=>{
-console.log(req.params.id);
-
- try {
-  await  Banner.findByIdAndDelete({_id:req.params.id})
-  res.status(200).json({message:'Banner deleted'})
- } catch (error) {
-  console.log(error)
- }
-})
- 
    
    
 

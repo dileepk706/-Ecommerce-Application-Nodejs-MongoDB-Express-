@@ -3,14 +3,20 @@ const Product=require('../../model/product/product')
 const Brand=require('../../model/brand/brand')
 const Banner=require('../../model/banner/banner')
 exports.userHome=async(req,res)=>{
-        const categories= await Category.find({isDeleted:false})
+
+  try {
+    const categories= await Category.find({isDeleted:false})
         const banner=await Banner.find() 
           
         const mobiles=await Product.find({isDeleted:false,subcategory:'mobiles'}).limit(5)
         const headphones=await Product.find({isDeleted:false,brand_name:'Apple'}).limit(5)
 
         // res.render('userHmome', { categories,mobiles,headphones:null,banner});
-        res.render('new', { categories,mobiles,headphones,banner});
+        res.render('homePage', { categories,mobiles,headphones,banner});
+  } catch (error) {
+    console.log(error);
+  }
+        
 
         
 }

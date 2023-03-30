@@ -1,0 +1,107 @@
+<%- include('include/_header')%>
+
+<%- include('include/_sideBar')%>
+<!-- PAGE INNER
+            ================================================== -->
+            <div class="page-inner">
+
+                <!-- PAGE MAIN WRAPPER
+                ================================================== -->
+                <div id="main-wrapper">
+                    <!-- row -->
+                    <div class="row align-items-center grid-margin">
+                        <div class="col-12">
+                            <div class="card card-white">
+                                <div class="card-body row align-items-center">
+                                    <div class="col-12 col-md-4">
+                                        <h4 class="mb-4 mb-md-0">Coupons</h4>
+                                    </div>
+
+                                    <div class="col-12 col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-3 mb-3 mb-md-0">
+                                                <select class="form-control form-select">
+                                                    <option>Status</option>
+                                                    <option>Active</option>
+                                                    <option>revoked</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-3 mb-3 mb-md-0">
+                                                <select class="form-control form-select">
+                                                    <option>Order Limits</option>
+                                                    <option>Last 7 Orders</option>
+                                                    <option>Last 15 Orders</option>
+                                                    <option>Last 30 Orders</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="exampleInputEmail1" placeholder="search by name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card card-white">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-order">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Code</th>
+                                                    <th scope="col">Remaining coupon</th>
+                                                    <th scope="col">Expiration Date</th>
+                                                    <th scope="col">Discount type</th>
+                                                    <th scope="col">Coupon amount</th>
+                                                    <th scope="col">Update</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% for(let i = 0; i<coupon.length; i++ ){ %>
+                                                    <tr>
+                                                        <td><%=i+1%></td>
+                                                        <td><%=coupon[i].couponCode%></td>
+                                                        <td><%=coupon[i].quantity%></td>
+                                                         
+                                                        <td><%=coupon[i].expiryDate%> </td>
+                                                        <td><%=coupon[i].discountType%> </td>
+                                                        <td><%=coupon[i].couponAmount%> </td>
+                                                        <td><a href="/admin/couponedit/<%=coupon[i]._id%>">Edit</a></td>
+                                                        <%if(coupon[i].disable==true){%>
+                                                        <td><button onclick="changeStatus('<%=coupon[i]._id%>')" class="btn btn-sm btn-primary"><i class="fas fa-circle text-danger me-2 f-s-10"></i>Revoked</button></td>
+                                                            <%}else{%>
+                                                        <td><button onclick="changeStatus('<%=coupon[i]._id%>')" class="btn btn-sm btn-primary"><i class="fas fa-circle text-success me-2 f-s-10"></i>Active</button></td>
+                                                                <%}%>
+                                                    </tr>
+                                                <% } %>
+                                                
+                                                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+
+                <script>
+                    function changeStatus(id){
+                        swal(id)
+                    }
+                </script>
+
+<%- include('include/_footer')%>
