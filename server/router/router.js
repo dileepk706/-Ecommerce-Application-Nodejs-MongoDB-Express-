@@ -204,15 +204,7 @@ const Coupon=require('../model/coupon/coupon')
 
 
 
-router.post('/applycoupon',async (req,res)=>{
-  try {
-    const couponCode=req.body.couponCode
-    res.status(200).json({message:couponCode})
-  } catch (error) {
-    res.status(500).json({message:'somthing went wrong'})
-  }
-  
-})
+router.post('/applycoupon',checkout.applyCoupon)
 
    
    

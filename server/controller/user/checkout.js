@@ -2,7 +2,7 @@ const Product=require('../../model/product/product')
 const Cart=require('../../model/cart/cart')
 const Order=require('../../model/order/order')
 const User=require('../../model/user/user')
-
+const Coupon=require('../../model/coupon/coupon')
 exports.checkout_adress=(req,res)=>{
     const userId=req.session.user
       User.findById({_id:userId}).then(userData=>{
@@ -98,3 +98,13 @@ exports.checkout_complete=(req,res)=>{
     })
   
   }
+
+exports.applyCoupon=async (req,res)=>{
+    try {
+      const couponCode=req.body.couponCode
+      res.status(200).json({message:couponCode})
+    } catch (error) {
+      res.status(500).json({message:'somthing went wrong'})
+    }
+    
+}
